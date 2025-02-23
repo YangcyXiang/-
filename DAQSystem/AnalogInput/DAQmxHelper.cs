@@ -18,7 +18,9 @@ namespace DAQmx.Helper
         public  ManualResetEventSlim ViewDataSetEvent { get; set; }
         // 定义一个静态变量来保存类的实例
         private static DAQmxHelper uniqueInstance;
-
+        public bool barSetFlag;
+        public double barMax;
+        public double barMin;
         public double SampleRate { get; set; }
         public bool IsAccumulate { get; set; }
         public int TriggerFreq { get; set; }

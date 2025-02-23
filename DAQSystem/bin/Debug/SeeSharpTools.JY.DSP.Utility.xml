@@ -682,23 +682,159 @@
             Peak and valley analysis
             </summary>
         </member>
-        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.FindPeaks(System.Double[],System.Double,System.Double[]@,System.Double[]@)">
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.FindPeaks(System.Double[],System.Double[],System.Double,System.Double,System.Double,SeeSharpTools.JY.DSP.Utility.FlatSelection,System.Boolean)">
             <summary>
-            Find peaks
+            波峰或波谷检测
             </summary>
-            <param name="data">input values</param>
-            <param name="minPeakProminence">min peak prominence</param>
-            <param name="index">indexes of peaks</param>
-            <param name="value">values of peaks</param>
+            <param name="data">输入数据</param>
+            <param name="x">位置向量，长度和输入数据相同</param>
+            <param name="minPeakHeight">最小峰值高度，指定最小峰值高度可以减少处理时间</param>
+            <param name="minPeakDistance">最小峰间距，用于忽略在较大峰值的邻域中出现的小峰值</param>
+            <param name="threshold">峰值与其邻点之间的最小高度差,用于排除平峰</param>
+            <param name="flatSelection">峰值连续重复时的平台区指示符，默认保留平台区第一个元素，当threshold不为0时忽略此参数</param>
+            <param name="isValley">检测波谷而不是波峰</param>
+            <returns>波峰或者波谷的高度和峰值位置</returns>
         </member>
-        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.FindValleys(System.Double[],System.Double,System.Double[]@,System.Double[]@)">
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.GetAllPeaks(System.Double[])">
             <summary>
-            Find valleys
+            find indices of all finite and infinite peaks and the inflection points
             </summary>
-            <param name="data">input values</param>
-            <param name="minPeakProminence">min peak prominence</param>
-            <param name="index">indexes of valleys</param>
-            <param name="value">values of valleys</param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.FindLocalMaxima(System.Double[])">
+            <summary>
+            determine the peaks and inflection points of the signal
+            </summary>
+            <param name="yTemp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.RemoveSmallPeaks(System.Double[],System.Int32[],System.Double,System.Double)">
+            <summary>
+            remove peaks that don't satisfy minimum height and threshold
+            </summary>
+            <param name="y"></param>
+            <param name="iPk"></param>
+            <param name="minPeakHeight"></param>
+            <param name="threshold"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.FindPeaksSeparatedByMoreThanMinPeakDistance(System.Double[],System.Double[],System.Int32[],System.Double)">
+            <summary>
+            find the indices of the largest peaks within the specified distance
+            </summary>
+            <param name="y"></param>
+            <param name="x"></param>
+            <param name="iPk"></param>
+            <param name="minD"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.AdjustFlatRegions(System.Double[],System.Int32[],SeeSharpTools.JY.DSP.Utility.FlatSelection)">
+            <summary>
+            Adjust results in flat regions.
+            </summary>
+            <param name="x"></param>
+            <param name="iPk"></param>
+            <param name="flatSelection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.FindUniqueRanges(System.Double[])">
+            <summary>
+            Find the locations of all unique leading values
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.Diff(System.Double[])">
+            <summary>
+            依次计算数组中相邻两个元素的差值，差分和近似导数
+            </summary>
+            <param name="x">一维输入数组</param>
+            <returns>差值结果</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.SubArray``1(``0[],System.Int32[])">
+            <summary>
+            获取一维数组中指定索引集合处的元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="x">输入一维数组</param>
+            <param name="indices">索引集合</param>
+            <returns>数组子集</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.SubArray``1(``0[],System.Int32,System.Int32)">
+            <summary>
+            获取一维数组中指定起始索引和长度的子集
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="x">原始一维数组</param>
+            <param name="index">起始索引，索引超出数组大小会返回空数组</param>
+            <param name="count">索引长度，如果索引+索引长度超出数组大小，会返回尽可能多的元素</param>
+            <returns>数组子集</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.SubArray``1(``0[],System.Boolean[])">
+            <summary>
+            根据索引数组仅保留原始一维数组中的部分元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="x">输入一维数组</param>
+            <param name="idxKeep">指示是否保留此索引位置的布尔数组</param>
+            <returns>数组子集</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.FindAllIndex``1(``0[],System.Predicate{``0})">
+            <summary>
+            查找一维数组中满足要求的所有元素的索引，如果没有元素满足条件则返回空数组
+            </summary>
+            <param name="array">要搜索的一维数组</param>
+            <param name="match">定义要搜索的元素的条件</param>
+            <returns>元素索引</returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Utility.PeakValleyAnalysis.Sort(System.Double[],SeeSharpTools.JY.DSP.Utility.SortDirection)">
+            <summary>
+            对一维实数数组进行排序
+            </summary>
+            <param name="x">一维实数输入</param>
+            <param name="sortDirection">排序方向，默认为升序</param>
+            <returns>排序后的数组以及每个元素在原数组中的索引值</returns>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.FlatSelection">
+            <summary>
+            峰值连续重复时的平台区指示符
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.FlatSelection.First">
+            <summary>
+            仅指示峰值平台区的第一个元素
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.FlatSelection.Center">
+            <summary>
+             仅指示峰值平台区的中心元素
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.FlatSelection.Last">
+            <summary>
+            仅指示峰值平台区的最后一个元素
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.FlatSelection.All">
+            <summary>
+            指示最大值平台区的所有元素
+            </summary>
+        </member>
+        <member name="T:SeeSharpTools.JY.DSP.Utility.SortDirection">
+            <summary>
+            排序方向
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.SortDirection.Ascend">
+            <summary>
+            升序
+            </summary>
+        </member>
+        <member name="F:SeeSharpTools.JY.DSP.Utility.SortDirection.Descend">
+            <summary>
+            降序
+            </summary>
         </member>
         <member name="T:SeeSharpTools.JY.DSP.Utility.Phase">
             <summary>

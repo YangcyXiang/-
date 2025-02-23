@@ -65,7 +65,7 @@ namespace DAQmx
         private void DAQspectrumView_Load(object sender, EventArgs e)
         {
             cts = new CancellationTokenSource();
-            Task.Factory.StartNew(()=>UpdateLoop());
+            Task.Factory.StartNew(() => UpdateLoop());
         }
 
 
@@ -102,6 +102,11 @@ namespace DAQmx
                         }
                         if (强度BarToolStripMenuItem.Checked == true)
                         {
+                            if (_DAQmaxHelper.barSetFlag)
+                            {
+                                hm.ScaleMax = _DAQmaxHelper.barMax;
+                                hm.ScaleMin = _DAQmaxHelper.barMin;
+                            }
                             plt.AddColorbar(hm);
                         }
                         plt.Margins(0, 0);
@@ -113,20 +118,26 @@ namespace DAQmx
                         if (isGray)
                         {
 
-                                hm = plt.AddHeatmap(_DAQmaxHelper.ViewData, Colormap.Grayscale, lockScales: false);
-                            
+                            hm = plt.AddHeatmap(_DAQmaxHelper.ViewData, Colormap.Grayscale, lockScales: false);
+
 
                         }
                         else
                         {
 
-                                hm = plt.AddHeatmap(_DAQmaxHelper.ViewData, Colormap.Turbo,lockScales:false);
+                            hm = plt.AddHeatmap(_DAQmaxHelper.ViewData, Colormap.Turbo, lockScales: false);
 
 
-                               
+
                         }
                         if (强度BarToolStripMenuItem.Checked == true)
                         {
+                            if (_DAQmaxHelper.barSetFlag)
+                            { 
+                                hm.ScaleMax  = _DAQmaxHelper.barMax;
+                                hm.ScaleMin = _DAQmaxHelper.barMin;
+                            }
+                            
                             plt.AddColorbar(hm);
                         }
                         plt.Margins(0, 0);
@@ -284,8 +295,8 @@ namespace DAQmx
             int formWidth = this.ClientSize.Width;
             int formHeight = this.ClientSize.Height - 40;//减去40是下面状态栏的位置空出来
 
-            double cossizeX = 3 *_DAQmaxHelper.Colsnum;
-            double cossizeY = 3*_DAQmaxHelper.Rowsnum;
+            double cossizeX = 3 * _DAQmaxHelper.Colsnum;
+            double cossizeY = 3 * _DAQmaxHelper.Rowsnum;
 
             // 尽量占据整个窗体并保持4:3比例,4:3刚好是正方形
             int newWidth, newHeight;
@@ -309,7 +320,16 @@ namespace DAQmx
             强度BarToolStripMenuItem.Checked = !强度BarToolStripMenuItem.Checked;
             if (强度BarToolStripMenuItem.Checked == false)
             {
-                DAQspectrumView_SizeChanged(null,null);
+                DAQspectrumView_SizeChanged(null, null);
+            }
+        }
+
+        private void 强度设定ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var tempForm = new 强度设定();
+            if (DialogResult.OK == tempForm.ShowDialog())
+            {
+                DAQspectrumView_SizeChanged(null, null);
             }
         }
     }

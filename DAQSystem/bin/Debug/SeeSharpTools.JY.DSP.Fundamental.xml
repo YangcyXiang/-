@@ -141,6 +141,40 @@
             <para>Chinese Simplified: 采样率，以S/s为单位。</para>
             </param>
         </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Generation.SquareWave(System.Double[]@,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            <para>Generates a sequence containing a square wave with specified high low level, dutycyle, frequency, phase and sampling rate.</para>
+            <para>Chinese Simplified: 生成一个方波波形，可设定方波的幅度、占空比、频率和采样率。</para>
+            </summary>
+            <param name="x">
+            <para>contains the square wave sequence.</para>
+            <para>Chinese Simplified: 返回的方波波形。</para>
+            </param>
+            <param name="highLevel">
+            <para>the high level of square wave.</para>
+            <para>Chinese Simplified: 方波的高电平。</para>
+            </param>
+            <param name="lowLevel">
+            <para>the low level of square wave.</para>
+            <para>Chinese Simplified: 方波的低电平。</para>
+            </param>
+            <param name="dutyCycle">
+            <para>the percentage of time the square wave remains high in one period.</para>
+            <para>Chinese Simplified: 占空百分比，为0~100之间的数值。</para>
+            </param>
+            <param name="frequency">
+            <para>the frequency of square wave in Hz. </para>
+            <para>Chinese Simplified: 方波的频率，以Hz为单位。</para>
+            </param>
+            <param name="phase">
+            <para>the phase of square wave in grade. </para>
+            <para>Chinese Simplified: 方波的相位，以度为单位。</para>
+            </param>
+            <param name="samplingRate">
+            <para>the sampling rate of square wave in samples/second.</para>
+            <para>Chinese Simplified: 采样率，以S/s为单位。</para>
+            </param>
+        </member>
         <member name="M:SeeSharpTools.JY.DSP.Fundamental.Generation.UniformWhiteNoise(System.Double[]@,System.Double)">
              <summary>
              <para>Generates a uniformly distributed pseudorandom sequence in the range [–amplitude, amplitude].</para>
@@ -447,6 +481,15 @@
             <param name="x_out"></param>
             <returns></returns>
         </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiComputeForward(System.IntPtr,System.Double[0:,0:],System.IntPtr)">
+            <summary>
+            DFTI DftiComputeForward wrapper
+            </summary>
+            <param name="desc"></param>
+            <param name="x_in"></param>
+            <param name="x_out"></param>
+            <returns></returns>
+        </member>
         <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTI.DftiComputeForward(System.IntPtr,System.IntPtr,System.IntPtr)">
             <summary>
             DFTI DftiComputeForward wrapper
@@ -536,6 +579,9 @@
         <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiComputeForward(System.IntPtr,System.Double[],System.Double[])">
             DFTI native DftiComputeForward declaration 
         </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiComputeForward(System.IntPtr,System.Double[0:,0:],System.IntPtr)">
+            DFTI native DftiComputeForward declaration 
+        </member>
         <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTINative.DftiComputeForward(System.IntPtr,System.IntPtr,System.IntPtr)">
             DFTI native DftiComputeForward declaration 
         </member>
@@ -592,6 +638,45 @@
             <param name="spectrum">
             <para>output sequence containing the power spectrum.</para>
             <para>Chinese Simplified: 输出功率谱。</para>
+            </param>
+            <param name="df">
+            <para>the frequency resolution of the spectrum,  in hertz.</para>
+            <para>Chinese Simplified: 功率谱的频谱间隔，以Hz为单位。</para>
+            </param>
+            <param name="unit">
+            <para>unit of the output power spectrum</para>
+            <para>Chinese Simplified: 设置功率谱的单位。</para>
+            </param>
+            <param name="windowType">
+            <para>the time-domain window to apply to the time signal.</para>
+            <para>Chinese Simplified: 窗类型。</para>
+            </param>
+            <param name="windowPara">
+            <para>parameter for a Kaiser/Gaussian/Dolph-Chebyshev window, If window is any other window, this parameter is ignored</para>
+            <para>Chinese Simplified: 窗调整系数，仅用于Kaiser/Gaussian/Dolph-Chebyshev窗。</para>
+            </param>
+            <param name="PSD">
+            <para>specifies whether the output power spectrum is converted to power spectral density.</para>
+            <para>Chinese Simplified: 输出的频谱是否为功率谱密度。</para>
+            </param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Spectrum.PowerSpectrum(System.Double[0:,0:],System.Double,System.Double[0:,0:]@,System.Double@,SeeSharpTools.JY.DSP.Fundamental.SpectrumUnits,SeeSharpTools.JY.DSP.Fundamental.WindowType,System.Double,System.Boolean)">
+            <summary>
+            <para>Computes the power spectrum of muti-channel input time-domain signal.</para>
+            <para>Chinese Simplified: 计算多通道输入信号的功率频谱。</para>
+            </summary>
+            <param name="waveform">
+            <para>input muti-channel time-domain signal.</para>
+            <para>Chinese Simplified: 输入的多通道时域波形，每行一个通道的数据。</para>
+            </param>
+            <param name="samplingRate">
+            <para>sampling rate of the input time-domain signal, in samples per second.</para>
+            <para>Chinese Simplified: 输入信号的采样率，以S/s为单位。</para>
+            </param>
+            <param name="spectrum">
+            <para>output muti-channel sequence containing the power spectrum.</para>
+            <para>output muti-channel sequence containing the power spectrum.</para>
+            <para>Chinese Simplified: 输出多通道功率谱。</para>
             </param>
             <param name="df">
             <para>the frequency resolution of the spectrum,  in hertz.</para>
@@ -685,9 +770,19 @@
             <para>Chinese Simplified: 频谱间隔，以Hz为单位。</para>
             </param>        
         </member>
-        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Spectrum.AdvanceComplexFFT(System.Double[],System.Int32,SeeSharpTools.JY.DSP.Fundamental.WindowType,System.Double[],SeeSharpTools.JY.DSP.Fundamental.SpectralInfo@)">
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Spectrum.AdvanceRealFFT(System.Double[],System.Int32,SeeSharpTools.JY.DSP.Fundamental.WindowType,System.Double[],SeeSharpTools.JY.DSP.Fundamental.SpectralInfo@)">
             <summary>
-            计算时域信号的复数频谱，包含幅度谱和相位谱信息
+            计算时域信号的频谱
+            </summary>
+            <param name="waveform">时域波形数据</param>
+            <param name="spectralLines">频谱线的条数</param>
+            <param name="windowType">窗类型</param>
+            <param name="spectrum">计算后的复数频谱数据</param>
+            <param name="spectralInfo">返回的频谱数据的参数信息</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Spectrum.AdvanceRealFFT(System.Double[0:,0:],System.Int32,SeeSharpTools.JY.DSP.Fundamental.WindowType,System.Double[0:,0:],SeeSharpTools.JY.DSP.Fundamental.SpectralInfo@)">
+            <summary>
+            计算时域信号的频谱
             </summary>
             <param name="waveform">时域波形数据</param>
             <param name="spectralLines">频谱线的条数</param>
@@ -697,7 +792,7 @@
         </member>
         <member name="M:SeeSharpTools.JY.DSP.Fundamental.Spectrum.AdvanceComplexFFT(System.Double[],SeeSharpTools.JY.DSP.Fundamental.WindowType,System.Numerics.Complex[]@)">
             <summary>
-            计算时域信号的复数频谱，包含幅度谱和相位谱信息
+            计算时域信号的复数频谱
             </summary>
             <param name="waveform">时域波形数据</param>
             <param name="windowType">窗类型</param>
@@ -708,6 +803,18 @@
             频谱单位转换函数
             </summary>
             <param name="spectrum">输入频谱，单位转换后返回的序列也保存在里面</param>
+            <param name="spectrumType">输入频谱类型，功率谱或者幅度谱</param>
+            <param name="df">频谱间隔</param>
+            <param name="unitSetting">单位转换设置</param>
+            <param name="equivalentNoiseBw">计算频谱时，加窗所用窗函数的等效噪声带宽</param>
+            <returns></returns>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.Spectrum.UnitConversion(System.IntPtr,System.Int32,System.Double,SeeSharpTools.JY.DSP.Fundamental.SpectrumType,SeeSharpTools.JY.DSP.Fundamental.UnitConvSetting,System.Double)">
+            <summary>
+            频谱单位转换函数
+            </summary>
+            <param name="spectrumPtr">输入频谱，单位转换后返回的序列也保存在里面</param>
+            <param name="spectrumSize">输入频谱的点数</param>
             <param name="spectrumType">输入频谱类型，功率谱或者幅度谱</param>
             <param name="df">频谱间隔</param>
             <param name="unitSetting">单位转换设置</param>
@@ -725,6 +832,20 @@
             </summary>
             <param name="xIn">time domain datas</param>
             <param name="xOut">complex frequency datas as array of Complex64</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.RealFFT(System.Double[0:,0:],System.Numerics.Complex[0:,0:]@)">
+            <summary>
+            Real Multi Channel FFT
+            </summary>
+            <param name="xIn">time domain datas, 1CH per row</param>
+            <param name="xOut">complex frequency datas as array of Complex64, 1CH per row</param>
+        </member>
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.RealFFT(System.Double[0:,0:],System.Double[0:,0:]@)">
+            <summary>
+            Real Multi Channel FFT
+            </summary>
+            <param name="xIn">time domain datas, 1CH per row</param>
+            <param name="xOut">complex frequency datas as array of double, re0 im0 re1 im1...</param>
         </member>
         <member name="M:SeeSharpTools.JY.DSP.Fundamental.BasicFFT.RealFFT(System.Double[],System.Double[]@)">
             <summary>
@@ -948,15 +1069,18 @@
             DFT desc Dictionary
             </summary>
         </member>
-        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.GetDFTDesc(System.Int32,SeeSharpTools.JY.DSP.Fundamental.DFTType)">
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.GetDFTDesc(System.Int32,SeeSharpTools.JY.DSP.Fundamental.DFTType,System.UInt16,System.UInt32,System.UInt32)">
             <summary>
             Get DFTKey
             </summary>
             <param name="fftSampleCount">fft运算的点数</param>
             <param name="type">fft类型</param>
+            <param name="fftNumber">fft的通道数</param>
+            <param name="fftInputDistance">fft输入数据的distance</param>
+            <param name="fftOutputDistance">fft输出数据的distance</param>
             <returns></returns>
         </member>
-        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.Contains(System.UInt32,SeeSharpTools.JY.DSP.Fundamental.DFTType,System.UInt64@)">
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.Contains(System.UInt32,SeeSharpTools.JY.DSP.Fundamental.DFTType,System.String@)">
             <summary>
             Contains DFTKey
             </summary>
@@ -981,7 +1105,7 @@
             <param name="type"></param>
             <param name="desc"></param>
         </member>
-        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.AddDFTDesc(System.UInt64,System.IntPtr)">
+        <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTIDescMgr.AddDFTDesc(System.String,System.IntPtr)">
             <summary>
             添加DFT Desc
             </summary>
@@ -995,12 +1119,27 @@
         </member>
         <member name="P:SeeSharpTools.JY.DSP.Fundamental.DFTKey.FFTSampleCount">
             <summary>
-            FFT点数
+            FFT点数：与FFTDistance共用 40bit.
             </summary>
         </member>
         <member name="P:SeeSharpTools.JY.DSP.Fundamental.DFTKey.Type">
             <summary>
-            FFT类型
+            FFT类型 8bit: 255
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.DSP.Fundamental.DFTKey.FFTNumber">
+            <summary>
+            FFT Number: 16bit: 65535CH
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.DSP.Fundamental.DFTKey.FFTInputDistance">
+            <summary>
+            FFTDistance: (FFTDistance - FFTSampleCount) 与FFTSampleCount是此消彼长的关系，所以与FFTSampleCount共用40bit，占最高的bit
+            </summary>
+        </member>
+        <member name="P:SeeSharpTools.JY.DSP.Fundamental.DFTKey.FFTOutputDistance">
+            <summary>
+            FFTDistance: (FFTDistance - FFTSampleCount) 与FFTSampleCount是此消彼长的关系，所以与FFTSampleCount共用40bit，占最高的bit
             </summary>
         </member>
         <member name="M:SeeSharpTools.JY.DSP.Fundamental.DFTKey.GetKeyNum">

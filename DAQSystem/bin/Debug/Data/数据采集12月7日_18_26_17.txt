@@ -1,0 +1,9 @@
+BoardType = PXIe-69529
+SampleRate = 1000
+SampleToAcquire = 1000
+DataType = double
+ChannelCount = 4
+Channel[0] = 通道0
+Channel[1] = 通道1
+Channel[2] = 通道2
+Channel[3] = 通道3

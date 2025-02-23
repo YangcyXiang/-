@@ -1,0 +1,7 @@
+.vs/
+
+DAQSystem/obj/Debug/
+
+DAQSystem/bin/Debug/*.exe
+DAQSystem/bin/Debug/*.exe.config
+DAQSystem/bin/Debug/*.pdb

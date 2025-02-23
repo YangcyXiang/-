@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MACOs.JY.Playback</name>
+    </assembly>
+    <members>
+        <member name="T:MACOs.JY.Playback.PlaybackTask">
+            <summary>
+            Playback class
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.PlaybackTask.PlayBackPosition">
+            <summary>
+            Read data position
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.PlaybackTask.FrameLength">
+            <summary>
+            Step length when auto playing with unit of microsecond
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.PlaybackTask.SampleRate">
+            <summary>
+            SampleRate
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.PlaybackTask.TotalLength">
+            <summary>
+            Total length of samples
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.PlaybackTask.BoardType">
+            <summary>
+            BoardType
+            </summary>
+        </member>
+        <member name="M:MACOs.JY.Playback.PlaybackTask.OpenFile(System.String,MACOs.JY.Playback.StreamingInfo@)">
+            <summary>
+            Open file and read information related to streaming
+            </summary>
+            <param name="fileName">binary file path</param>
+            <param name="streamingInfo">streaming information including SignalFrequency, SampleRate, dataType, NumofChannels and TotalTime</param>
+        </member>
+        <member name="M:MACOs.JY.Playback.PlaybackTask.OpenFileTxtInfo(System.String,MACOs.JY.Playback.StreamingInfo@)">
+            <summary>
+            打开配置文件信息
+            </summary>
+            <param name="fileName">二进制文件路径</param>
+            <param name="streamingInfo">配置文件信息</param>
+        </member>
+        <member name="M:MACOs.JY.Playback.PlaybackTask.ReadPlayBackData(System.Double[0:,0:]@,System.Boolean@)">
+            <summary>
+            Read playback data
+            </summary>
+            <param name="buffer">data buffer</param>
+            <param name="readyForNext">ready for next time read</param>
+        </member>
+        <member name="M:MACOs.JY.Playback.PlaybackTask.CloseFile">
+            <summary>
+            Close the bin file handler that is currently reading
+            </summary>
+        </member>
+        <member name="M:MACOs.JY.Playback.PlaybackTask.ReadCurrentFrame(System.Double[0:,0:]@)">
+            <summary>
+            ReadCurrentFrame
+            </summary>
+            <param name="playbackBuffer"></param>
+        </member>
+        <member name="T:MACOs.JY.Playback.StreamingInfo">
+            <summary>
+            Information about streaming header file, such as SampleRate, DataSize etc.
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.StreamingInfo.BoardType">
+            <summary>
+            Board Type
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.StreamingInfo.SampleRate">
+            <summary>
+            SampleRate
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.StreamingInfo.SampleToAcquire">
+            <summary>
+            AI SampleToAcquire
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.StreamingInfo.DataSize">
+            <summary>
+            Data size
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.StreamingInfo.Channels">
+            <summary>
+            Channel List
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.StreamingInfo.ChannelsTerminal">
+            <summary>
+            RTD Terminal
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.StreamingInfo.StreamingTime">
+            <summary>
+            Streaming time in unit of ms and should be near to acquisition time, otherwise some data is lost
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.StreamingInfo.AcquisitionTime">
+            <summary>
+            Acquisition time in unit of ms, calculated by the file size
+            </summary>
+        </member>
+        <member name="P:MACOs.JY.Playback.StreamingInfo.SamplesPerChannel">
+            <summary>
+            number of total samples in selected file
+            </summary>
+        </member>
+    </members>
+</doc>

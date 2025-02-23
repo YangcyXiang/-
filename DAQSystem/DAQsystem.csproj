@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{50BAE7B4-EA34-4C69-B269-DDB30614AF16}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DAQmx</RootNamespace>
+    <AssemblyName>irfpa_test_system</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>bitbug_favicon %281%29.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JY5411, Version=5.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SeeSharp\JYTEK\Hardware\HSDIO\JY5411\Bin\JY5411.dll</HintPath>
+    </Reference>
+    <Reference Include="JY9818, Version=1.0.4.0, Culture=neutral, PublicKeyToken=baf6f065ce4627cc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\JY9818.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Filtering">
+      <HintPath>C:\SeeSharp\JYTEK\SeeSharpTools\Bin\MathNet.Filtering.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics">
+      <HintPath>Resource\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="ScottPlot, Version=4.1.69.0, Culture=neutral, PublicKeyToken=86698dc10387c39e, processorArchitecture=MSIL">
+      <HintPath>..\packages\ScottPlot.4.1.69\lib\net462\ScottPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="ScottPlot.WinForms, Version=4.1.69.0, Culture=neutral, PublicKeyToken=5df1dfa5321e734b, processorArchitecture=MSIL">
+      <HintPath>..\packages\ScottPlot.WinForms.4.1.69\lib\net472\ScottPlot.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="SeeSharpTools.JY.ArrayUtility">
+      <HintPath>Resource\SeeSharpTools.JY.ArrayUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="SeeSharpTools.JY.DSP.Fundamental">
+      <HintPath>C:\SeeSharp\JYTEK\SeeSharpTools\Bin\SeeSharpTools.JY.DSP.Fundamental.dll</HintPath>
+    </Reference>
+    <Reference Include="SeeSharpTools.JY.DSP.Utility">
+      <HintPath>C:\SeeSharp\JYTEK\SeeSharpTools\Bin\SeeSharpTools.JY.DSP.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="SeeSharpTools.JY.File">
+      <HintPath>C:\SeeSharp\JYTEK\SeeSharpTools\Bin\SeeSharpTools.JY.File.dll</HintPath>
+    </Reference>
+    <Reference Include="SeeSharpTools.JY.GUI, Version=1.4.7.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\SeeSharp\JYTEK\SeeSharpTools\Bin\SeeSharpTools.JY.GUI.dll</HintPath>
+    </Reference>
+    <Reference Include="SeeSharpTools.JY.Report">
+      <HintPath>C:\SeeSharp\JYTEK\SeeSharpTools\Bin\SeeSharpTools.JY.Report.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.4.7.2\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms.Ribbon, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resource\System.Windows.Forms.Ribbon.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.2.2864.18696, Culture=neutral, PublicKeyToken=d481317c817cec47, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resource\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnalogInput\DAQmxConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnalogInput\DAQmxConfig.designer.cs">
+      <DependentUpon>DAQmxConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnalogInput\DAQmxHelper.cs" />
+    <Compile Include="AnalogInput\ZeroCross.cs" />
+    <Compile Include="AnalogView\DAQchartView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnalogView\DAQchartView.designer.cs">
+      <DependentUpon>DAQchartView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnalogView\DAQspectrumView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnalogView\DAQspectrumView.designer.cs">
+      <DependentUpon>DAQspectrumView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnalogView\SubArrayExtractorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnalogView\SubArrayExtractorForm.Designer.cs">
+      <DependentUpon>SubArrayExtractorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DO配置\DOConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DO配置\DOConfigForm.designer.cs">
+      <DependentUpon>DOConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AnalogInput\DAQmxConfig.resx">
+      <DependentUpon>DAQmxConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnalogView\DAQchartView.resx">
+      <DependentUpon>DAQchartView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnalogView\DAQspectrumView.resx">
+      <DependentUpon>DAQspectrumView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnalogView\SubArrayExtractorForm.resx">
+      <DependentUpon>SubArrayExtractorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DO配置\DOConfigForm.resx">
+      <DependentUpon>DOConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource\Images\Start.jpg" />
+    <Content Include="bitbug_favicon %281%29.ico" />
+    <Content Include="Resource\jytek.ico" />
+    <Content Include="Resource\System.Windows.Forms.Ribbon.dll" />
+    <Content Include="Resource\WeifenLuo.WinFormsUI.Docking.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

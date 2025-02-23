@@ -1,0 +1,3069 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JY5411</name>
+    </assembly>
+    <members>
+        <member name="T:JY5411.JY5411Device">
+            <summary>
+            JY5411Device
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411Device.BoardClockRate">
+            <summary>
+            Board clock frequency
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411Device.SerialNumber">
+            <summary>
+            SerialNumber
+            </summary>
+            <summary>
+            SerialNumber
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411Device.MaxLineCount">
+            <summary>
+            LineCount
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411Device.MaxSampleRate">
+            <summary>
+            DIMaxSampleRate
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411Device.MaxUpdateRate">
+            <summary>
+            DOMaxUpdateRate
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411Device.PFI">
+            <summary>
+            <para xml:lang="zh_CN">PFI配置</para>
+            <para xml:lang="en_US">PFI Setting</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411Device.ReferenceClock">
+            <summary>
+            <para xml:lang="zh_CN">参考时钟配置。调用 <see cref="M:JY5411.ReferenceClock.Commit"/> 后，更改才会被应用。</para>
+            <para xml:lang="en_US">Reference Clock Configuration. Changes will not be applied until method <see cref="M:JY5411.ReferenceClock.Commit"/> is called.</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411Device.DeviceID">
+            <summary>
+            <para xml:lang="zh_CN">设备ID</para>
+            <para xml:lang="en_US">Device ID</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411Device._cardnumber">
+            <summary>
+            Solt number, the parameter when constructing such an object
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411Device._listThisInst">
+            <summary>
+            Used to save an instance of each cardnumber construct
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411Device._handle">
+            <summary>
+            The soltID obtained after calling Register
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411Device.Handle">
+            <summary>
+            CardID
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411Device.GetInstance(System.UInt16)">
+            <summary>
+            Obtain an operation instance based on the solt number to ensure
+            that there is only one registered instance per board
+            </summary>
+            <param name="cardNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411Device.#ctor(System.UInt16)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411Device.#ctor(System.String)">
+            <summary>
+             Constructor
+            </summary>
+            <param name="cardName"></param>
+        </member>
+        <member name="M:JY5411.JY5411Device.Release">
+            <summary>
+            Turn off the AD device, disable transmission, and release resources. This function 
+            is automatically executed in the destructor of the class
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411Device.Finalize">
+            <summary>
+            Destructor, freeing hardware resources
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411Device.AddRuningTask(System.Int32)">
+            <summary>
+            新增正在运行的任务的记录
+            </summary>
+            <param name="taskHashCode"></param>
+        </member>
+        <member name="M:JY5411.JY5411Device.RemoveRuningTask(System.Int32)">
+            <summary>
+            移除正在运行的任务的记录
+            </summary>
+            <param name="taskHashCode"></param>
+        </member>
+        <member name="M:JY5411.JY5411Device.ConfigBlinker(System.Boolean,System.UInt32)">
+            <summary>
+            配置状态指示灯
+            </summary>
+            <param name="enable">使能闪烁</param>
+            <param name="frequency">闪烁频率</param>
+        </member>
+        <member name="T:JY5411.JY5411Device.PowerLevel">
+            <summary>
+            <para xml:lang="zh_CN">电平标准</para>
+            <para xml:lang="en_US">DIPowerLevel</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411Device.PowerLevel.Level_1p8">
+            <summary>
+            1.8V
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411Device.PowerLevel.Level_2p5">
+            <summary>
+            2.5V
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411Device.PowerLevel.Level_3p3">
+            <summary>
+            3.3V
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411Device.PowerLevel.Level_5p0">
+            <summary>
+            5V
+            </summary>
+        </member>
+        <member name="T:JY5411.JY5411Device.PFISetting">
+            <summary>
+            <para xml:lang="zh_CN">PFI配置类</para>
+            <para xml:lang="en_US">PFI Setting Class</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411Device.PFISetting.LogicLevel">
+            <summary>
+            <para xml:lang="zh_CN">PFI端口的输入/输出高的电平标准，默认为 <see cref="F:JY5411.JY5411Device.PowerLevel.Level_5p0"/>。写入该属性后，更改会立即被应用。</para>
+            <para xml:lang="en_US">Input/Output high voltage of PFIs, The default is <see cref="F:JY5411.JY5411Device.PowerLevel.Level_5p0" />. Changes will be applied immediately after setting this property.</para>
+            </summary>
+        </member>
+        <member name="T:JY5411.ReferenceClockSource">
+            <summary>
+            <para xml:lang="zh_CN">参考时钟源</para>
+            <para xml:lang="en_US">Reference Clock Source</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.ReferenceClockSource.Internal">
+            <summary>
+            <para xml:lang="zh_CN">板载10MHz时钟（TXCO）</para>
+            <para xml:lang="en_US">Onboard 10MHz Clock (TXCO)</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.ReferenceClockSource.External">
+            <summary>
+            <para xml:lang="zh_CN">外部输入的时钟</para>
+            <para xml:lang="en_US">Reference Clock Source</para>
+            </summary>
+        </member>
+        <member name="T:JY5411.ExternalReferenceClockTerminal">
+            <summary>
+            <para xml:lang="zh_CN">外部参考时钟输入端口</para>
+            <para xml:lang="en_US">External Reference Clcok Terminal</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.ExternalReferenceClockTerminal.PXIe_Clk100">
+            <summary>
+            <para xml:lang="zh_CN">PXIe CLK100</para>
+            <para xml:lang="en_US">PXIe CLK100</para>
+            </summary>
+        </member>
+        <member name="T:JY5411.ExternalReferenceClock">
+            <summary>
+            <para xml:lang="zh_CN">外部参考时钟配置类</para>
+            <para xml:lang="en_US">External Reference Clcok Configuration Class</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.ExternalReferenceClock.Terminal">
+            <summary>
+            <para xml:lang="zh_CN">外部参考时钟输入端口</para>
+            <para xml:lang="en_US">External Reference Clcok Input Terminal</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.ExternalReferenceClock.Frequency">
+            <summary>
+            <para xml:lang="zh_CN">外部参考时钟频率</para>
+            <para xml:lang="en_US">Frequency of External Reference Clcok</para>
+            </summary>
+        </member>
+        <member name="T:JY5411.ReferenceClock">
+            <summary>
+            <para xml:lang="zh_CN">参考时钟配置类</para>
+            <para xml:lang="en_US">Reference Clcok Configuration Class</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.ReferenceClock.IsCommitAllowed">
+            <summary>
+            当前是否允许提交参考时钟配置。当有任何Task正在运行时，不允许提交。由 <see cref="T:JY5411.JY5411Device"/> 负责确认该状态。
+            </summary>
+        </member>
+        <member name="P:JY5411.ReferenceClock.Source">
+            <summary>
+            <para xml:lang="zh_CN">参考时钟源。默认值为 <see cref="F:JY5411.ReferenceClockSource.Internal"/>。</para>
+            <para xml:lang="en_US">Reference Clock Source. The default value is <see cref="F:JY5411.ReferenceClockSource.Internal"/>.</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.ReferenceClock.External">
+            <summary>
+            <para xml:lang="zh_CN">外部参考时钟源配置。当 <see cref="P:JY5411.ReferenceClock.Source"/> 选择为 <see cref="F:JY5411.ReferenceClockSource.External"/> 时需要配置</para>
+            <para xml:lang="en_US">External Reference Clock Source. Required when <see cref="P:JY5411.ReferenceClock.Source"/> is <see cref="F:JY5411.ReferenceClockSource.External"/>.</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.ReferenceClock.Commit">
+            <summary>
+            <para xml:lang="zh_CN">提交配置。在设备空闲时允许调用。【注意】错误的参数会导致PLL无法锁住参考时钟，且在关机并重启前无法恢复。</para>
+            <para xml:lang="en_US">Commit configuration. Available only when the device is idle. WARNING: Incorrect parameters will cause the PLL to be unable to lock the reference clock and cannot be recovered until shutdown and restart.</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_Open(System.Int32,System.IntPtr@)">
+            打开板卡资源
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_Close(System.IntPtr)">
+            关闭板卡资源
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_SetDeviceReferenceClock(System.IntPtr,System.Int32,System.Double)">
+            设置参考时钟
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_AddLines(System.IntPtr,System.Int32[],System.UInt32)">
+            添加DI通道
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SetSampleClock(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Double)">
+            设置时钟
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SetSampleRate(System.IntPtr,System.Double,System.Double@)">
+            设置采样率
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_ReadData(System.IntPtr,System.UInt32[],System.UInt32,System.Int32,System.UInt32@)">
+            DI读取数据
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_ReadData(System.IntPtr,System.IntPtr,System.UInt32,System.Int32,System.UInt32@)">
+            DI读取数据
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_ReadSinglePoint(System.IntPtr,System.Byte[],System.Int32)">
+            DI读取单点数据
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_Start(System.IntPtr)">
+            DI开始
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_Stop(System.IntPtr)">
+            DI停止
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SetMode(System.IntPtr,System.Int32)">
+            DI模式
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SetSamplesToAcquire(System.IntPtr,System.Int32)">
+            配置DI采样点数
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_CheckBufferStatus(System.IntPtr,System.UInt64@,System.Boolean@)">
+            获取缓冲区状态
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_CheckBufferStatusEx(System.IntPtr,System.UInt64@,System.UInt64@,System.Boolean@)">
+            获取缓冲区状态
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SetStartTriggerType(System.IntPtr,System.Int32)">
+            设置开始触发类型
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SetReferenceTriggerType(System.IntPtr,System.Int32)">
+            设置参考触发类型
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SetDigitalStartTrigger(System.IntPtr,System.Int32,System.Int32)">
+             设置数字开始触发
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SetDigitalReferenceTrigger(System.IntPtr,System.Int32,System.Int32)">
+             设置数字参考触发
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SetTriggerDelay(System.IntPtr,System.UInt32)">
+            设置DI start trigger delay tap
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SendSoftTrigger(System.IntPtr,System.Int32)">
+            发送DI软件触发
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_WaitUntilDone(System.IntPtr,System.Boolean@)">
+             完成状态
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SetPreTriggerSamples(System.IntPtr,System.UInt32)">
+            设置预触发点数
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DI_SetReTriggerCount(System.IntPtr,System.UInt64)">
+            设置重复触发次数
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_AddLines(System.IntPtr,System.Int32[],System.UInt32)">
+            添加DO通道
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_SetUpdateRate(System.IntPtr,System.Double,System.Double@)">
+            设置更新率
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_SetSampleClock(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Double)">
+            设置时钟
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_WriteData(System.IntPtr,System.UInt32[],System.UInt32,System.Int32,System.UInt32@)">
+            DO写入数据
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_WriteData(System.IntPtr,System.IntPtr,System.UInt32,System.Int32,System.UInt32@)">
+            DO写入数据
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_WriteSinglePoint(System.IntPtr,System.Byte[],System.Int32)">
+            DO写入单点数据
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_SetDeviceReferenceClock(System.IntPtr,System.Int32,System.Int32,System.Double)">
+            设置时基
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_Start(System.IntPtr)">
+            DO开始
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_Stop(System.IntPtr)">
+            DO停止
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_SetMode(System.IntPtr,System.Int32)">
+            DO模式
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_SetSamplesToUpdate(System.IntPtr,System.Int32)">
+            有限点模式配置更新点数
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_CheckBufferStatus(System.IntPtr,System.UInt32@,System.Boolean@)">
+            检查DO缓冲区状态
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_CheckBufferStatusEx(System.IntPtr,System.UInt32@,System.UInt64@,System.Boolean@)">
+            检查DO缓冲区状态
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_SetStartTriggerType(System.IntPtr,System.Int32)">
+            设置触发类型
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_SetTriggerDelay(System.IntPtr,System.UInt32)">
+            设置DO start trigger delay tap
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_SendSoftTrigger(System.IntPtr)">
+            发送DO软件触发
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_WaitUntilDone(System.IntPtr,System.Boolean@)">
+             完成状态
+        </member>
+        <member name="M:JY5411.JY5411Import.JY5411_DO_SetDigitalStartTrigger(System.IntPtr,System.Int32,System.Int32)">
+             设置开始数字触发
+        </member>
+        <member name="T:JY5411.JYLogLevel">
+            <summary>
+            <para xml:lang="zh_CN">日志级别定义</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYLogLevel.DEBUG">
+            <summary>
+            <para xml:lang="zh_CN">DEBUG Level指出细粒度信息事件对调试应用程序是非常有帮助的</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYLogLevel.INFO">
+            <summary>
+            <para xml:lang="zh_CN">INFO level表明 消息在粗粒度级别上突出强调应用程序的运行过程</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYLogLevel.WARN">
+            <summary>
+            <para xml:lang="zh_CN">WARN level表明会出现潜在错误的情形。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYLogLevel.ERROR">
+            <summary>
+            <para xml:lang="zh_CN">ERROR level指出虽然发生错误事件，但仍然不影响系统的继续运行。。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYLogLevel.FATAL">
+            <summary>
+            <para xml:lang="zh_CN">FATAL level指出每个严重的错误事件将会导致应用程序的退出。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="T:JY5411.JYLog">
+            <summary>
+            <para xml:lang="zh_CN">日志打印类，用于在程序逻辑中打印一些日记记录到文件，方便调试程序，同时客户使用时如果遇到问题，也可以使能日志打印的功能，方便定位错误的原因。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.JYLog.LogLevel">
+            <summary>
+            <para xml:lang="zh_CN">日志等级，默认为ERROR。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYLog._logMsgQ">
+            <summary>
+            <para xml:lang="zh_CN">用于日志消息缓存的队列，首次调用时初始化。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.JYLog.EnableLog">
+            <summary>
+            <para xml:lang="zh_CN">使能日志打印功能。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JYLog.Print(System.String,System.Object[])">
+            <summary>
+            <para xml:lang="zh_CN">写入日志文件,需要定义宏ENABLELOG 或 DEBUG，此方法兼容旧版。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+            <param name="logMsg">
+            <para xml:lang="zh_CN">要打印的消息内容。</para>
+            <para xml:lang="en_US">no message.</para>
+            </param>
+            <param name="args">
+            <para xml:lang="zh_CN">参数。</para>
+            <para xml:lang="en_US">no message.</para>
+            </param>
+        </member>
+        <member name="M:JY5411.JYLog.Print(JY5411.JYLogLevel,System.String,System.Object[])">
+             <summary>
+             <para xml:lang="zh_CN">写入日志文件,需要定义宏ENABLELOG 或 DEBUG。</para>
+             <para xml:lang="en_US">no message.</para>
+             </summary>
+             <param name="logLevel">
+             <para xml:lang="zh_CN">日志等级。</para>
+             <para xml:lang="en_US">no message.</para>
+             </param>
+             <param name="logMsg">
+             <para xml:lang="zh_CN">要打印的消息内容。</para>
+             <para xml:lang="en_US">no message.</para>
+             </param>
+             <param name="args">
+             <para xml:lang="zh_CN">参数。</para>
+             <para xml:lang="en_US">no message.</para>
+            </param>
+        </member>
+        <member name="M:JY5411.JYLog.FuncWriteLog">
+            <summary>
+            <para xml:lang="zh_CN">轮询日志队列的定时器回调函数。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="T:JY5411.JYDriverExceptionPublic">
+            <summary>
+            <para xml:lang="zh_CN">驱动常用错误代码枚举定义。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.UnKnown">
+            <summary>
+            <para xml:lang="zh_CN">未知异常。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.OpenDeviceFailed">
+            <summary>
+            <para xml:lang="zh_CN">打开设备失败。</para>
+            <para xml:lang="en_US">OpenDeviceFailed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.CloseDeviceFailed">
+            <summary>
+            <para xml:lang="zh_CN">关闭设备失败。</para>
+            <para xml:lang="en_US">CloseDeviceFailed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.ResetDeviceFailed">
+            <summary>
+            <para xml:lang="zh_CN">重置设备失败。</para>
+            <para xml:lang="en_US">ResetDeviceFailed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.GetDevicePropertyFailed">
+            <summary>
+            <para xml:lang="zh_CN">获取设备属性失败。</para>
+            <para xml:lang="en_US">GetDevicePropertyFailede.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.SetDevicePropertyFailed">
+            <summary>
+            <para xml:lang="zh_CN">设置设备属性失败。</para>
+            <para xml:lang="en_US">SetDevicePropertyFailed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.HardwareResourceIsReserved">
+            <summary>
+            <para xml:lang="zh_CN">硬件资源被占用。</para>
+            <para xml:lang="en_US">HardwareResourceIsReserved.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.MethodNotPermitedToCallWhenCurrentStatus">
+            <summary>
+            <para xml:lang="zh_CN">当前状态不允许调用该方法。</para>
+            <para xml:lang="en_US">MethodNotPermitedToCallWhenCurrentStatus.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.InvalidUserDataBuffer">
+            <summary>
+            <para xml:lang="zh_CN">用户缓冲区无效。</para>
+            <para xml:lang="en_US">InvalidUserDataBuffer.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.NoChannelAdded">
+            <summary>
+            <para xml:lang="zh_CN">未添加通道。</para>
+            <para xml:lang="en_US">NoChannelAdded.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.NotSupportOperationForCurrentDevice">
+            <summary>
+            <para xml:lang="zh_CN">当前设备不支持该操作。</para>
+            <para xml:lang="en_US">NotSupportOperationForCurrentDevice.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.CreatTaskFailed">
+            <summary>
+            <para xml:lang="zh_CN">创建任务失败。</para>
+            <para xml:lang="en_US">CreatTaskFailed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.StartTaskFailed">
+            <summary>
+            <para xml:lang="zh_CN">开始任务失败。</para>
+            <para xml:lang="en_US">StartTaskFailed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.StopTaskFailed">
+            <summary>
+            <para xml:lang="zh_CN">停止任务失败。</para>
+            <para xml:lang="en_US">StopTaskFailed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.TaskHasNotStarted">
+            <summary>
+            <para xml:lang="zh_CN">任务未开始。</para>
+            <para xml:lang="en_US">TaskHasNotStarted.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.TaskHasStartedCannotPerformTheSetOperation">
+            <summary>
+            <para xml:lang="zh_CN">任务已开始，不能设置。</para>
+            <para xml:lang="en_US">TaskHasStartedCannotPerformTheSetOperation.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.ChannelNumberParameterInvalid">
+            <summary>
+            <para xml:lang="zh_CN">通道号参数无效。</para>
+            <para xml:lang="en_US">ChannelNumberParameterInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.ChannelInputRangeParameterInvalid">
+            <summary>
+            <para xml:lang="zh_CN">通道输入范围参数无效。</para>
+            <para xml:lang="en_US">ChannelInputRangeParameterInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.ChannelTerminalParameterInvalid">
+            <summary>
+            <para xml:lang="zh_CN">通道接线方式参数无效。</para>
+            <para xml:lang="en_US">ChannelTerminalParameterInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.ChannelCouplingParameterInvalid">
+            <summary>
+            <para xml:lang="zh_CN">通道耦合方式参数无效。</para>
+            <para xml:lang="en_US">ChannelCouplingParameterInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.SampeleModeParameterInvalid">
+            <summary>
+            <para xml:lang="zh_CN">采样模式参数无效。</para>
+            <para xml:lang="en_US">SampeleModeParameterInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.SampleClockParameterInvalid">
+            <summary>
+            <para xml:lang="zh_CN">采样时钟参数无效。</para>
+            <para xml:lang="en_US">SampleClockParameterInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.SampleRateParameterInvalid">
+            <summary>
+            <para xml:lang="zh_CN">采样率参数无效。</para>
+            <para xml:lang="en_US">SampleRateParameterInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.UpdateRateParameterInvalid">
+            <summary>
+            <para xml:lang="zh_CN">更新率参数无效。</para>
+            <para xml:lang="en_US">UpdateRateParameterInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.TriggerParameterInvalid">
+            <summary>
+            <para xml:lang="zh_CN">触发参数无效。</para>
+            <para xml:lang="en_US">TriggerParameterInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.ReferenceTriggerDoesNotMatchWithSampleMode">
+            <summary>
+            <para xml:lang="zh_CN">参考触发与采集模式不匹配。</para>
+            <para xml:lang="en_US">ReferenceTriggerDoesNotMatchWithSampleMode.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.PretriggerPointCanNotBeLongerThanTheNumberOfFinitePoint">
+            <summary>
+            <para xml:lang="zh_CN">预触发点数不能大于有限采集点数。</para>
+            <para xml:lang="en_US">PretriggerPointCanNotBeLongerThanTheNumberOfFinitePoint.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.ReadDataFailed">
+            <summary>
+            <para xml:lang="zh_CN">读取数据失败。</para>
+            <para xml:lang="en_US">ReadDataFailed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.ReadDataTimeout">
+            <summary>
+            <para xml:lang="zh_CN">读取数据超时。</para>
+            <para xml:lang="en_US">ReadDataTimeout.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.WriteDataFailed">
+            <summary>
+            <para xml:lang="zh_CN">写入数据失败。</para>
+            <para xml:lang="en_US">WriteDataFailed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.WriteDataTimeout">
+            <summary>
+            <para xml:lang="zh_CN">写入数据超时。</para>
+            <para xml:lang="en_US">WriteDataTimeout.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.WriteDataLengthCannotBeLessThanN">
+            <summary>
+            <para xml:lang="zh_CN">写入数据不能少于N。</para>
+            <para xml:lang="en_US">WriteDataLengthCannotBeLessThanN.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.BufferDataOverflow">
+            <summary>
+            <para xml:lang="zh_CN">缓冲区数据溢出。</para>
+            <para xml:lang="en_US">BufferDataOverflow.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.BufferDataDownflow">
+            <summary>
+            <para xml:lang="zh_CN">缓冲区数据下溢。</para>
+            <para xml:lang="en_US">BufferDataDownflow.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.CheckBufferFailed">
+            <summary>
+            <para xml:lang="zh_CN">查询缓冲区失败。</para>
+            <para xml:lang="en_US">CheckBufferFailed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.PointInvalidInFiniteMode">
+            <summary>
+            <para xml:lang="zh_CN">有限模式采样点数无效。</para>
+            <para xml:lang="en_US">PointInvalidInFiniteMode.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.ReadPointInvalid">
+            <summary>
+            <para xml:lang="zh_CN">读取点数无效。</para>
+            <para xml:lang="en_US">ReadPointInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.OnlySupportRecordMode">
+            <summary>
+            <para xml:lang="zh_CN">仅支持流盘模式。</para>
+            <para xml:lang="en_US">OnlySupportRecordMode.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.SendSoftTirggerFailed">
+            <summary>
+            <para xml:lang="zh_CN">发送软件触发失败。</para>
+            <para xml:lang="en_US">SendSoftTirggerFailed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.TaskTimeout">
+            <summary>
+            <para xml:lang="zh_CN">任务超时。</para>
+            <para xml:lang="en_US">TaskTimeout.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.CounterParametersInvalid">
+            <summary>
+            <para xml:lang="zh_CN">任务超时。</para>
+            <para xml:lang="en_US">CounterParametersInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.WritePointInvalid">
+            <summary>
+            <para xml:lang="zh_CN">写入点数无效。</para>
+            <para xml:lang="en_US">WritePointInvalid.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.SignalExportDestinationInvalid">
+            <summary>
+            JYDriverExceptionPublic
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.ReferenceClockCommitDenied">
+            <summary>
+            <para xml:lang="zh_CN">配置参考时钟被拒绝。</para>
+            <para xml:lang="en_US">Config reference clock denied.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.ReferenceClockCommitFailed">
+            <summary>
+            <para xml:lang="zh_CN">配置参考时钟失败。</para>
+            <para xml:lang="en_US">Config reference clock failed.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverExceptionPublic.PLLUnlocked">
+            <summary>
+            <para xml:lang="zh_CN">锁相环未处于锁定状态。</para>
+            <para xml:lang="en_US">PLL is unlocked.</para>
+            </summary>
+        </member>
+        <member name="T:JY5411.JYDriverException">
+            <summary>
+            <para xml:lang="zh_CN">JY异常类。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.JYDriverException.FollowingException">
+            <summary>
+            <para xml:lang="zh_CN">异常链表指针, 指向后一个异常。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JYDriverException.#ctor(System.Int32)">
+            <summary>
+            <para xml:lang="zh_CN">构造函数。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JYDriverException.#ctor(JY5411.JYDriverExceptionPublic)">
+            <summary>
+            <para xml:lang="zh_CN">构造函数。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JYDriverException.#ctor(System.String,JY5411.JYDriverExceptionPublic)">
+            <summary>
+            <para xml:lang="zh_CN">构造函数。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JYDriverException.#ctor(JY5411.JYDriverExceptionPublic,System.String,System.Object[])">
+            <summary>
+            <para xml:lang="zh_CN">构造函数。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JYDriverException.#ctor(System.Int32,System.String,System.Object[])">
+            <summary>
+            <para xml:lang="zh_CN">构造函数。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JYDriverException.#ctor(System.String,System.Exception)">
+            <summary>
+            <para xml:lang="zh_CN">构造函数。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="F:JY5411.JYDriverException.ErrorCode">
+            <summary>
+            <para xml:lang="zh_CN">错误代码。</para>
+            <para xml:lang="en_US">no message.</para>
+            </summary>
+        </member>
+        <member name="T:JY5411.BufferQueue`1">
+            <summary>
+            缓冲队列类（托管内存固定）该类效率较低，不推荐使用
+            </summary>
+        </member>
+        <member name="T:JY5411.BufferQueue`1.CDataInfo">
+            <summary>
+            存放数据信息的类
+            </summary>
+        </member>
+        <member name="P:JY5411.BufferQueue`1.CDataInfo.Count">
+            <summary>
+            数据点数
+            </summary>
+        </member>
+        <member name="P:JY5411.BufferQueue`1.CDataInfo.ElemType">
+            <summary>
+            数据元素类型
+            </summary>
+        </member>
+        <member name="P:JY5411.BufferQueue`1.CDataInfo.RDIndex">
+            <summary>
+            读指针位置
+            </summary>
+        </member>
+        <member name="P:JY5411.BufferQueue`1.CDataInfo.DataPtr">
+            <summary>
+            数据指针
+            </summary>
+        </member>
+        <member name="P:JY5411.BufferQueue`1.CDataInfo.DataArray">
+            <summary>
+            数据数组
+            </summary>
+        </member>
+        <member name="F:JY5411.BufferQueue`1.CDataInfo._dataGCHandle">
+            <summary>
+            GC Handle 
+            </summary>
+        </member>
+        <member name="M:JY5411.BufferQueue`1.CDataInfo.#ctor(System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:JY5411.BufferQueue`1.CDataInfo.IncIdx(System.Int32)">
+            <summary>
+            递增读指针
+            </summary>
+            <param name="count"></param>
+        </member>
+        <member name="M:JY5411.BufferQueue`1.CDataInfo.Dispose">
+            <summary>
+            全部释放
+            </summary>
+        </member>
+        <member name="F:JY5411.BufferQueue`1._dataQ">
+            <summary>
+            用于数据缓存的队列，首次调用时初始化
+            </summary>
+        </member>
+        <member name="M:JY5411.BufferQueue`1.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:JY5411.BufferQueue`1.NumOfElement">
+            <summary>
+            当前的元素个数
+            </summary>
+        </member>
+        <member name="M:JY5411.BufferQueue`1.Clear">
+            <summary>
+            清空队列内的数据
+            </summary>
+        </member>
+        <member name="M:JY5411.BufferQueue`1.Enqueue(`0[])">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:JY5411.BufferQueue`1.Enqueue(`0[],System.Int32)">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:JY5411.BufferQueue`1.Enqueue(`0[0:,0:])">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:JY5411.BufferQueue`1.Dequeue(`0[]@,System.Int32)">
+            <summary>
+            从缓冲队列中取出指定长度的数据
+            </summary>
+            <param name="reqBuffer">请求读取缓冲区</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="M:JY5411.BufferQueue`1.Dequeue(`0[0:,0:]@,System.Int32)">
+            <summary>
+            从缓冲队列中取出指定长度的数据
+            </summary>
+            <param name="reqBuffer">请求读取缓冲区</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="T:JY5411.BufferQueueEx`1">
+            <summary>
+            缓冲队列类（非托管内存）该类效率较低，不推荐使用
+            </summary>
+        </member>
+        <member name="T:JY5411.BufferQueueEx`1.CDataInfo">
+            <summary>
+            存放数据信息的类
+            </summary>
+        </member>
+        <member name="P:JY5411.BufferQueueEx`1.CDataInfo.Count">
+            <summary>
+            数据点数
+            </summary>
+        </member>
+        <member name="P:JY5411.BufferQueueEx`1.CDataInfo.ElemType">
+            <summary>
+            数据元素类型
+            </summary>
+        </member>
+        <member name="P:JY5411.BufferQueueEx`1.CDataInfo.RDIndex">
+            <summary>
+            读指针位置
+            </summary>
+        </member>
+        <member name="P:JY5411.BufferQueueEx`1.CDataInfo.DataPtr">
+            <summary>
+            数据指针
+            </summary>
+        </member>
+        <member name="M:JY5411.BufferQueueEx`1.CDataInfo.#ctor(System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:JY5411.BufferQueueEx`1.CDataInfo.IncIdx(System.Int32)">
+            <summary>
+            递增读指针
+            </summary>
+            <param name="count"></param>
+        </member>
+        <member name="M:JY5411.BufferQueueEx`1.CDataInfo.Dispose">
+            <summary>
+            全部释放
+            </summary>
+        </member>
+        <member name="F:JY5411.BufferQueueEx`1._dataQ">
+            <summary>
+            用于数据缓存的队列，首次调用时初始化
+            </summary>
+        </member>
+        <member name="M:JY5411.BufferQueueEx`1.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:JY5411.BufferQueueEx`1.NumOfElement">
+            <summary>
+            当前的元素个数
+            </summary>
+        </member>
+        <member name="M:JY5411.BufferQueueEx`1.Clear">
+            <summary>
+            清空队列内的数据
+            </summary>
+        </member>
+        <member name="M:JY5411.BufferQueueEx`1.Enqueue(`0[])">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:JY5411.BufferQueueEx`1.Enqueue(`0[],System.Int32)">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:JY5411.BufferQueueEx`1.Enqueue(`0[0:,0:])">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:JY5411.BufferQueueEx`1.Dequeue(`0[]@,System.Int32)">
+            <summary>
+            从缓冲队列中取出指定长度的数据
+            </summary>
+            <param name="reqBuffer">请求读取缓冲区</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="M:JY5411.BufferQueueEx`1.Dequeue(`0[0:,0:]@,System.Int32)">
+            <summary>
+            从缓冲队列中取出指定长度的数据
+            </summary>
+            <param name="reqBuffer">请求读取缓冲区</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="T:JY5411.CircularBufferEx`1">
+            <summary>
+            循环缓冲队列扩展类（非托管内存），主要用于实现循环缓冲链，该类较高，推荐使用，但跨平台需要重新修改
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+        </member>
+        <member name="F:JY5411.CircularBufferEx`1._sizeOfT">
+            <summary>
+            T的Size，创建队列的时候初始化
+            </summary>
+        </member>
+        <member name="F:JY5411.CircularBufferEx`1._bufferPtr">
+            <summary>
+            缓冲区的指针首地址
+            </summary>
+        </member>
+        <member name="F:JY5411.CircularBufferEx`1._WRIdx">
+            <summary>
+            队列写指针
+            </summary>
+        </member>
+        <member name="F:JY5411.CircularBufferEx`1._RDIdx">
+            <summary>
+            队列读指针
+            </summary>
+        </member>
+        <member name="P:JY5411.CircularBufferEx`1.NumOfElement">
+            <summary>
+            当前的元素个数
+            </summary>
+        </member>
+        <member name="P:JY5411.CircularBufferEx`1.BufferSize">
+            <summary>
+            缓冲区的大小
+            </summary>
+        </member>
+        <member name="P:JY5411.CircularBufferEx`1.CurrentCapacity">
+            <summary>
+            当前能容纳的点数
+            </summary>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.#ctor(System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="bufferSize"></param>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Dispose">
+            <summary>
+            释放循环缓冲区
+            </summary>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Clear">
+            <summary>
+            清空循环缓冲区的数据
+            </summary>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Finalize">
+            <summary>
+            析构函数，避免非托管内存没有释放
+            </summary>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Enqueue(`0[])">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Enqueue(`0[],System.Int32)">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Enqueue(`0[],System.Int32,System.Int32)">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Enqueue(`0[0:,0:])">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Enqueue(`0[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="elements"></param>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Enqueue(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            向缓冲队列中放入一组数据
+            </summary>
+            <param name="dataPtr">数据首地址</param>
+            <param name="srcIdx">数据开始的索引（以元素为单位，非字节单位）</param>
+            <param name="len">数据长度（以元素为单位，非字节单位）</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Dequeue(`0[]@,System.Int32)">
+            <summary>
+            从缓冲队列中取出指定长度的数据
+            </summary>
+            <param name="reqBuffer">请求读取缓冲区</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Dequeue(`0[]@,System.Int32,System.Int32)">
+            <summary>
+            从缓冲队列中取出指定长度的数据
+            </summary>
+            <param name="reqBuffer">请求读取缓冲区</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Dequeue(`0[0:,0:]@,System.Int32,System.Int32)">
+            <summary>
+            从缓冲队列中取出指定长度的数据
+            </summary>
+            <param name="reqBuffer">请求读取缓冲区</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Dequeue(`0[0:,0:]@,System.Int32)">
+            <summary>
+            从缓冲队列中取出指定长度的数据
+            </summary>
+            <param name="reqBuffer">请求读取缓冲区</param>
+            <returns>返回实际取到的数据长度</returns>
+        </member>
+        <member name="M:JY5411.CircularBufferEx`1.Dequeue(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            从缓冲队列中取出指定长度的数据
+            </summary>
+            <param name="reqBufferPtr">请求数据的首地址</param>
+            <param name="dstIdx">目标数据的开始索引（以元素为单位，非字节单位）</param>
+            <param name="len">出队数据的长度（以元素为单位，非字节单位）</param>
+            <returns></returns>
+        </member>
+        <member name="T:JY5411.CircularBufferList`1">
+            <summary>
+            <para>循环缓冲链类，将CircularBufferEx链起来</para>
+            <para>优点：不用预先分配较大的内存，当程序运行时不够用了再按块增加</para>
+            <para>使用注意：块大小要合适，不能太小，也不能太大。</para>
+            <para>----太小：增加内存拷贝的次数，消耗CPU资源；</para>
+            <para>----太大：增加内存占用。</para>
+            <para>推荐分配块大小为入队和出队数据量的4~16倍</para>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:JY5411.CircularBufferList`1._numOfElement">
+            <summary>
+            元素个数计数
+            </summary>
+        </member>
+        <member name="P:JY5411.CircularBufferList`1.NumOfElement">
+            <summary>
+            当前元素个数
+            </summary>
+        </member>
+        <member name="P:JY5411.CircularBufferList`1.CurrentCapacity">
+            <summary>
+            当前缓冲区容量
+            </summary>
+        </member>
+        <member name="F:JY5411.CircularBufferList`1._blockSize">
+            <summary>
+            块大小
+            </summary>
+        </member>
+        <member name="F:JY5411.CircularBufferList`1._lstCircleBuffer">
+            <summary>
+            循环缓冲链表
+            </summary>
+        </member>
+        <member name="F:JY5411.CircularBufferList`1._RDBlockIdx">
+            <summary>
+            读写索引
+            </summary>
+        </member>
+        <member name="F:JY5411.CircularBufferList`1._WRBlockIdx">
+            <summary>
+            读写索引
+            </summary>
+        </member>
+        <member name="F:JY5411.CircularBufferList`1._LastBlockCount">
+            <summary>
+            上一次Dequeue后的块数
+            </summary>
+        </member>
+        <member name="F:JY5411.CircularBufferList`1._firstDequeueFlag">
+            <summary>
+            第一次Dequeue后标志为false
+            </summary>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.#ctor(System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="blockSize"></param>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Clear">
+            <summary>
+            清空循环缓冲区的数据
+            </summary>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Dispose">
+            <summary>
+            释放循环缓冲区
+            </summary>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Finalize">
+            <summary>
+            析构函数，避免非托管内存没有释放
+            </summary>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Enqueue(`0[])">
+            <summary>
+            数据入队
+            </summary>
+            <param name="elems">入队的数据源数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Enqueue(`0[],System.Int32,System.Int32)">
+            <summary>
+            数据入队，带数据源的开始索引
+            </summary>
+            <param name="elems">入队的数据源数组</param>
+            <param name="srcIdx">数据源的开始索引</param>
+            <param name="len">入队的数据长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Enqueue(`0[],System.Int32)">
+            <summary>
+            数据入队，不带数据源的开始索引
+            </summary>
+            <param name="elems">入队的数据源数组</param>
+            <param name="len">入队的数据长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Enqueue(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            数据入队，带数据源的开始索引
+            </summary>
+            <param name="elemsPtr">入队的数据源数组地址</param>
+            <param name="srcIdx">数据源的开始索引（以元素为单位，非字节）</param>
+            <param name="len">入队的数据长度（以元素为单位，非字节）</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Enqueue(`0[0:,0:],System.Int32,System.Int32)">
+            <summary>
+            数据入队，带数据源的开始索引
+            </summary>
+            <param name="elems">入队的数据源数组</param>
+            <param name="srcIdx">数据源的开始索引</param>
+            <param name="len">入队的数据长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Enqueue(`0[0:,0:],System.Int32)">
+            <summary>
+            数据入队，不带数据源的开始索引
+            </summary>
+            <param name="elems">入队的数据源数组</param>
+            <param name="len">入队的数据长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Dequeue(`0[]@)">
+            <summary>
+            数据出队
+            </summary>
+            <param name="retBuffer">请求出队的目标数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Dequeue(`0[]@,System.Int32,System.Int32)">
+            <summary>
+            数据出队，带目标数组的开始索引
+            </summary>
+            <param name="retBuffer">请求出队的目标数组</param>
+            <param name="dstIdx">目标数组的开始索引</param>
+            <param name="len">出队的数据长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Dequeue(`0[]@,System.Int32)">
+            <summary>
+            数据出队，不带目标数组的开始索引
+            </summary>
+            <param name="retBuffer">请求出队的目标数组</param>
+            <param name="len">出队的数据长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Dequeue(`0[0:,0:]@,System.Int32,System.Int32)">
+            <summary>
+            数据出队，带目标数组的开始索引
+            </summary>
+            <param name="retBuffer">请求出队的目标数组</param>
+            <param name="dstIdx">目标数组的开始索引</param>
+            <param name="len">出队的数据长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Dequeue(`0[0:,0:]@,System.Int32)">
+            <summary>
+            数据出队，不带目标数组的开始索引
+            </summary>
+            <param name="retBuffer">请求出队的目标数组</param>
+            <param name="len">出队的数据长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.CircularBufferList`1.Dequeue(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            数据出队，带目标数组的开始索引
+            </summary>
+            <param name="retBufferPtr">请求出队的目标数组地址</param>
+            <param name="dstIdx">目标数组的开始索引（以元素为单位，非字节）</param>
+            <param name="len">出队的数据长度（以元素为单位，非字节）</param>
+            <returns></returns>
+        </member>
+        <member name="T:JY5411.JY5411DITask">
+            <summary>
+            <para xml:lang="zh_CN">JY5411数字输入任务</para>
+            <para xml:lang="en_US">JY5411 DITask Input Task.</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DITask.#ctor(System.Int32)">
+            <summary>
+            <para xml:lang="zh_CN">用卡槽号创建一个DITask</para>
+            <para xml:lang="en_US">Create a DITask with a slot number</para>
+            </summary>
+            <param name="slotNum">
+            <para xml:lang="zh_CN">板卡槽位号</para>
+            <para xml:lang="en_US">Slot Number</para>
+            </param>
+        </member>
+        <member name="M:JY5411.JY5411DITask.#ctor(System.String)">
+            <summary>
+            <para xml:lang="zh_CN">用板卡名称创建一个DITask</para>
+            <para xml:lang="en_US">Create a DITask with a boardName</para>
+            </summary>
+            <param name="boardName">
+            <para xml:lang="zh_CN">板卡名称</para>
+            <para xml:lang="en_US">boardName</para>
+            </param>
+        </member>
+        <member name="F:JY5411.JY5411DITask._devHandle">
+            <summary>
+            Object of operating hardware
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._actualSampleRate">
+            <summary>
+            actualSampleRate
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._diStarted">
+            <summary>
+            the flag of DITask has been Started
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._RecordDataLength">
+            <summary>
+            流盘数据长度
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._WriteDateLength">
+            <summary>
+            流盘已经写入长度
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask.RecordDone">
+            <summary>
+            流盘标记
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._circularBuffer">
+            <summary>
+            流盘模式下预览数据缓冲区
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._dataBuffer">
+            <summary>
+            流盘模式下预览数据缓冲区
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._blockBuffer">
+            <summary>
+            流盘模式下单次读取数据缓冲区
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._thdWriteDataFile">
+            <summary>
+            内部写文件线程
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._thdReadData">
+            <summary>
+            内部读取数据线程
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._previewBufferLock">
+            <summary>
+            流盘预览缓冲区锁
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._fs">
+            <summary>
+            FileStream对象
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._wt">
+            <summary>
+            写二进制对象
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._recordBlockSize">
+            <summary>
+            流盘块大小
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._threadException">
+            <summary>
+            线程抛出的异常管理
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.Channels">
+            <summary>
+            <para xml:lang="zh_CN">DI通道</para>
+            <para xml:lang="en_US">DIChannel List</para> 
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.Device">
+            <summary>
+            JY5411Device
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.Mode">
+            <summary>
+            <para xml:lang="zh_CN">采集模式</para>
+            <para xml:lang="en_US">Acquisition mode, support Single/Finite/Continuous three types</para> 
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.SampleClock">
+            <summary>
+            <para xml:lang="zh_CN">采样时钟</para>
+            <para xml:lang="en_US">Clock source, supports both internal and external types</para> 
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.SampleRate">
+            <summary>
+            <para xml:lang="zh_CN">采样率</para>
+            <para xml:lang="en_US">Sample rate per channel, maximum sampling rate is 50MHz</para> 
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.SamplesToAcquire">
+            <summary>
+            <para xml:lang="zh_CN">每通道采集的样点数。当 <see cref="P:JY5411.JY5411DITask.Mode"/> 为 <see cref="F:JY5411.DIMode.Finite"/> 时有效。</para>
+            <para xml:lang="en_US">Number of samples to be acquired per channel. Only valid when <see cref="P:JY5411.JY5411DITask.Mode"/> is <see cref="F:JY5411.DIMode.Finite"/>.</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.AvailableSamples">
+            <summary>
+            <para xml:lang="zh_CN">缓冲区内可以读取的每通道点数。当 <see cref="P:JY5411.JY5411DITask.Mode"/> 不为 <see cref="F:JY5411.DIMode.Single"/> 时有效。</para>
+            <para xml:lang="en_US">Number of samples per channel that can be read from the buffer. Valid when <see cref="P:JY5411.JY5411DITask.Mode"/> is NOT <see cref="F:JY5411.DIMode.Single"/>.</para>
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.TransferedSamples">
+            <summary>
+            The number of samples that have been transfered from the local buffer (per channel).  Valid when <see cref="P:JY5411.JY5411DITask.Mode"/> is NOT <see cref="F:JY5411.DIMode.Single"/>.
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.BufLenInSamples">
+            <summary>
+            Number of samples per channel can be storage in the buffer, the Proprety <see cref="P:JY5411.JY5411DITask.SamplesToAcquire"/> must be less than or equal to this value.   
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.Trigger">
+            <summary>
+            <para xml:lang="zh_CN">触发</para>
+            <para xml:lang="en_US">configure DITask trigger param</para> 
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.Record">
+            <summary>
+            di Data streaming Configuration
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DITask.SignalExport">
+            <summary>
+            Export DI Signal
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DITask.AddChannel(System.Int32)">
+            <summary>
+            <para xml:lang="zh_CN">添加单通道</para>
+            <para xml:lang="en_US">add single channel</para>
+            </summary>
+            <param name="lineNum">
+            <para xml:lang="zh_CN">通道编号</para>
+            <para xml:lang="en_US">lineID</para>
+            </param>
+        </member>
+        <member name="M:JY5411.JY5411DITask.AddChannel(System.Int32[])">
+            <summary>
+            <para xml:lang="zh_CN">添加多通道</para>
+            <para xml:lang="en_US">add muliti channel</para>
+            </summary>
+            <param name="linesNum">
+            <para xml:lang="zh_CN">通道编号数组</para>
+            <para xml:lang="en_US">lineID</para>
+            </param>
+        </member>
+        <member name="M:JY5411.JY5411DITask.RemoveChannel(System.Int32)">
+            <summary>
+            <para xml:lang="zh_CN">删除单通道</para>
+            <para xml:lang="en_US">Delete the specified line number</para>
+            </summary>
+            <param name="lineNum">
+            <para xml:lang="zh_CN">通道编号</para>
+            <para xml:lang="en_US">lineID</para>
+            </param>
+        </member>
+        <member name="M:JY5411.JY5411DITask.SendSoftwareTrigger">
+            <summary>
+            <para xml:lang="zh_CN">发送软件触发</para>
+            <para xml:lang="en_US">SendSoftwareTrigger</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DITask.ReadSinglePoint(System.Boolean[]@)">
+            <summary>
+            <para xml:lang="zh_CN">从寄存器读取样点值。当 <see cref="T:System.Type"/> 为 <see cref="F:JY5411.DIMode.Single"/>时可用。</para>
+            <para xml:lang="en_US">Read a signle count value from register. Available when <see cref="T:System.Type"/> is <see cref="F:JY5411.DIMode.Single"/>时可用。</para>
+            </summary>
+            <param name="readValues">
+            <para xml:lang="zh_CN">存储样点值的数组，每个通道读取一个bool值</para>
+            <para xml:lang="en_US">Values read. Buffer size >= number of channels.</para>
+            </param>
+        </member>
+        <member name="M:JY5411.JY5411DITask.ReadSinglePoint(System.Boolean@,System.Int32)">
+            <summary>
+            <para xml:lang="zh_CN">从寄存器读取样点值。当 <see cref="T:System.Type"/> 为 <see cref="F:JY5411.DIMode.Single"/>时可用。</para>
+            <para xml:lang="en_US">Read a signle count value from register. Available when <see cref="T:System.Type"/> is <see cref="F:JY5411.DIMode.Single"/>时可用。</para>
+            </summary>
+            <param name="readValue">
+            <para xml:lang="zh_CN">样点值</para>
+            <para xml:lang="en_US">Values read.</para>
+            </param>
+            <param name="lineNum">
+            <para xml:lang="zh_CN">通道编号</para>
+            <para xml:lang="en_US">Specified line numbers.</para>
+            </param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:JY5411.JY5411DITask.ReadData(System.UInt32[]@,System.UInt32,System.Int32)" -->
+        <member name="M:JY5411.JY5411DITask.ReadData(System.IntPtr,System.UInt32,System.Int32)">
+            <summary>
+            <para xml:lang="zh_CN">读取样点值</para>
+            <para xml:lang="en_US">the buffer of save data</para>
+            </summary>
+            <param name="buf">
+            <para xml:lang="zh_CN">样点值</para>
+            <para xml:lang="en_US">readValue</para>
+            </param>
+            <param name="samplesToAcquire">
+            <para xml:lang="zh_CN">采样点数</para>
+            <para xml:lang="en_US">samplesToAcquire</para>
+            </param>
+            <param name="timeOut">
+            <para xml:lang="zh_CN">超时时间</para>
+            <para xml:lang="en_US">timeOut</para>
+            </param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:JY5411.JY5411DITask.ReadData(System.UInt32[]@,System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:JY5411.JY5411DITask.ReadData(System.Byte[0:,0:]@,System.UInt32,System.Int32)" -->
+        <member name="M:JY5411.JY5411DITask.ReadData(System.Byte[]@,System.UInt32,System.Int32)">
+            <summary>
+            <para xml:lang="zh_CN">读取单通道字节类型样点值</para>
+            <para xml:lang="en_US">Read the byte data from one line.</para>
+            </summary>
+            <param name="buf">
+            <para xml:lang="zh_CN">样点值</para>
+            <para xml:lang="en_US">readValue</para>
+            </param>
+            <param name="samplesPerChannel">
+            <para xml:lang="zh_CN">采样点数</para>
+            <para xml:lang="en_US">Number of samples per line to be read </para>
+            </param>
+            <param name="timeOut">
+            <para xml:lang="zh_CN">超时时间</para>
+            <para xml:lang="en_US">timeout before generating error message, uint is ms。 timeout =-1 keep waiting until finish.</para>
+            </param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:JY5411.JY5411DITask.GetRecordPreviewData(System.UInt32[]@,System.Int32,System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:JY5411.JY5411DITask.GetRecordPreviewData(System.UInt32[]@,System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:JY5411.JY5411DITask.GetRecordPreviewData(System.Byte[0:,0:]@,System.Int32,System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:JY5411.JY5411DITask.GetRecordPreviewData(System.Byte[]@,System.UInt32,System.Int32)" -->
+        <!-- Badly formed XML comment ignored for member "M:JY5411.JY5411DITask.GetRecordStatus(System.Double@,System.Boolean@)" -->
+        <member name="M:JY5411.JY5411DITask.Start">
+            <summary>
+            <para xml:lang="zh_CN">启动DI任务</para>
+            <para xml:lang="en_US">Start DI task</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DITask.Stop">
+            <summary>
+            <para xml:lang="zh_CN">停止DI任务</para>
+            <para xml:lang="en_US">Stop DITask</para>
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DITask.CheckParam">
+            <summary>
+            CheckParam
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DITask.ConfigChannels">
+            <summary>
+            ConfigChannels
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DITask.ConfigSampleRate">
+            <summary>
+            ConfigSampleRate
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DITask.ConfigSampleClock">
+            <summary>
+            ConfigClockSource
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DITask.ConfigMode">
+            <summary>
+            ConfigMode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DITask.ConfigSampleToAcquire">
+            <summary>
+            ConfigSampleToAcquire
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DITask.ConfigTigger">
+            <summary>
+            Config Tigger
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DITask.ReadDataThread">
+            <summary>
+            Read Data Thread
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DITask.WriteFileThread">
+            <summary>
+            Write file thread
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DITask._fileWriteHandle">
+            <summary>
+            FileStream对象
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DITask.CreateRecordFile">
+            <summary>
+            创建流盘文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DITask.WriteDataToFile(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            数据写入流盘文件
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DITask.CloseRecordFile">
+            <summary>
+            关闭流盘文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:JY5411.DIChannel">
+            <summary>
+            <para xml:lang="zh_CN">通道类</para>
+            <para xml:lang="en_US">DIChannel class</para> 
+            </summary>
+        </member>
+        <member name="P:JY5411.DIChannel.LineNum">
+            <summary>
+            <para xml:lang="zh_CN">通道编号</para>
+            <para xml:lang="en_US">LineID</para> 
+            </summary>
+        </member>
+        <member name="M:JY5411.DIChannel.#ctor(System.Int32)">
+            <summary>
+            DIChannel
+            </summary>
+            <param name="lineID">channelID</param>
+        </member>
+        <member name="T:JY5411.DIMode">
+            <summary>
+            <para xml:lang="zh_CN">DI 模式</para>
+            <para xml:lang="en_US">DIMode</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DIMode.Single">
+            <summary>
+            <para xml:lang="zh_CN">单点模式</para>
+            <para xml:lang="en_US">Single mode</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DIMode.Finite">
+            <summary>
+            <para xml:lang="zh_CN">有限点模式</para>
+            <para xml:lang="en_US">Finite mode</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DIMode.Continuous">
+            <summary>
+            <para xml:lang="zh_CN">连续模式</para>
+            <para xml:lang="en_US">Continuous mode</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DIMode.Record">
+            <summary>
+            Record
+            </summary>
+        </member>
+        <member name="T:JY5411.DISampleClockSource">
+            <summary>
+            <para xml:lang="zh_CN">时钟源</para>
+            <para xml:lang="en_US">DITask ClockSource enumeration type</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DISampleClockSource.Internal">
+            <summary>
+            <para xml:lang="zh_CN">内部时钟</para>
+            <para xml:lang="en_US">Internal board clock</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DISampleClockSource.External">
+            <summary>
+            External
+            </summary>
+        </member>
+        <member name="T:JY5411.DISampleClock">
+            <summary>
+            Sample clock configuration class
+            </summary>
+        </member>
+        <member name="P:JY5411.DISampleClock.Source">
+            <summary>
+            Clock Source. enum  Internal/External
+            </summary>
+        </member>
+        <member name="P:JY5411.DISampleClock.External">
+            <summary>
+            External Sample Clock
+            </summary>
+        </member>
+        <member name="P:JY5411.DISampleClock.Edge">
+            <summary>
+            Clock Edge
+            </summary>
+        </member>
+        <member name="T:JY5411.DIExternalSampleClock">
+            <summary>
+            External Sample Clock Configuration Class
+            </summary>
+        </member>
+        <member name="P:JY5411.DIExternalSampleClock.Terminal">
+            <summary>
+            External Sample Clock Input Terminal
+            </summary>
+        </member>
+        <member name="P:JY5411.DIExternalSampleClock.ExpectedRate">
+            <summary>
+            Expected External Sample Clock Rate
+            </summary>
+        </member>
+        <member name="T:JY5411.ClockTerminal">
+            <summary>
+            External Sample Clock Terminal
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXIe_DStarA">
+            <summary>
+            PXIeDStarA
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXIe_DStarB">
+            <summary>
+            PXIeDStarB
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXI_Star">
+            <summary>
+            PXIStar
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXIe_Sync100">
+            <summary>
+            SYNC100
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXI_Trig0">
+            <summary>
+            External clock PXITriggerBus0
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXI_Trig1">
+            <summary>
+            External clock PXITriggerBus1
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXI_Trig2">
+            <summary>
+            External clock PXITriggerBus2
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXI_Trig3">
+            <summary>
+            External clock PXITriggerBus3
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXI_Trig4">
+            <summary>
+            External clock PXITriggerBus4
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXI_Trig5">
+            <summary>
+            External clock PXITriggerBus5
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXI_Trig6">
+            <summary>
+            External clock PXITriggerBus6
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PXI_Trig7">
+            <summary>
+            External clock PXITriggerBus7
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PFI0">
+            <summary>
+            External clock PXITriggerPFI0
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PFI1">
+            <summary>
+            External clock PXITriggerPFI1
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PFI2">
+            <summary>
+            External clock PXITriggerPFI2
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PFI3">
+            <summary>
+            External clock PXITriggerPFI3
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PFI4">
+            <summary>
+            External clock PXITriggerPFI4
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PFI5">
+            <summary>
+            External clock PXITriggerPFI5
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PFI6">
+            <summary>
+            External clock PXITriggerPFI6
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.PFI7">
+            <summary>
+            External clock PXITriggerPFI7
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.DI_SampleClock">
+            <summary>
+            DI_SampleClock
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockTerminal.DO_SampleClock">
+            <summary>
+            DO_SampleClock
+            </summary>
+        </member>
+        <member name="T:JY5411.ClockEdge">
+             <summary>
+            ClockEdge enumeration type
+             </summary>
+        </member>
+        <member name="F:JY5411.ClockEdge.Rising">
+            <summary>
+            Rising
+            </summary>
+        </member>
+        <member name="F:JY5411.ClockEdge.Falling">
+            <summary>
+            Falling
+            </summary>
+        </member>
+        <member name="T:JY5411.DITriggerType">
+            <summary>
+            <para xml:lang="zh_CN">触发类型</para>
+            <para xml:lang="en_US">DITask DITriggerType enumeration type</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DITriggerType.Immediately">
+            <summary>
+            Immediate
+            </summary>
+        </member>
+        <member name="F:JY5411.DITriggerType.Digital">
+            <summary>
+            Digital
+            </summary>
+        </member>
+        <member name="F:JY5411.DITriggerType.Soft">
+            <summary>
+            Soft
+            </summary>
+        </member>
+        <member name="T:JY5411.DITriggerMode">
+            <summary>
+            <para xml:lang="zh_CN">触发模式</para>
+            <para xml:lang="en_US">DITask DITriggerMode enumeration type</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DITriggerMode.Start">
+            <summary>
+            Start
+            </summary>
+        </member>
+        <member name="F:JY5411.DITriggerMode.Reference">
+            <summary>
+            Reference
+            </summary>
+        </member>
+        <member name="T:JY5411.DITrigger">
+            <summary>
+            <para xml:lang="zh_CN">触发模式</para>
+            <para xml:lang="en_US">DI trigger parameter configuration class</para> 
+            </summary>
+        </member>
+        <member name="P:JY5411.DITrigger.Mode">
+            <summary>
+            Trigger mode, including Start/Reference
+            </summary>
+        </member>
+        <member name="P:JY5411.DITrigger.Type">
+            <summary>
+            Trigger type, including: Immediate/Digital
+            </summary>
+        </member>
+        <member name="P:JY5411.DITrigger.Digital">
+            <summary>
+            Digital trigger setting
+            </summary>
+        </member>
+        <member name="P:JY5411.DITrigger.ReTriggerCount">
+            <summary>
+            ReTriggerCount
+            </summary>
+        </member>
+        <member name="P:JY5411.DITrigger.PreTriggerSamples">
+             <summary>
+            the number of points before the trigger should be set to 0 using the hardware's immediate trigger or delayed trigger mode
+             Use hardware pre-trigger or intermediate trigger mode should set it to the number of points to be collected before triggering
+             </summary>
+        </member>
+        <member name="P:JY5411.DITrigger.Delay">
+            <summary>
+            DIDigitalTrigger delay，Unit:Sample
+            </summary>
+        </member>
+        <member name="M:JY5411.DITrigger.#ctor(JY5411.DITriggerType,JY5411.DITriggerMode,System.Int32,System.UInt32)">
+            <summary>
+            Default parameter：
+            Trigger type -- no trigger
+            Trigger mode---start trigger
+            Trigger edge---rising edge
+            Whether to trigger again---No
+            The number of points before the trigger ---0
+            The number of points after the trigger ---0
+            </summary>
+        </member>
+        <member name="T:JY5411.DIDigitalTriggerSource">
+            <summary>
+            <para xml:lang="zh_CN">数字触发源</para>
+            <para xml:lang="en_US">DI digital trigger source definition</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PFI0">
+            <summary>
+            PFI0
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PFI1">
+            <summary>
+            PFI_1
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PFI2">
+            <summary>
+            PFI_2
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PFI3">
+            <summary>
+            PFI_3
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PFI4">
+            <summary>
+            PFI_4
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PFI5">
+            <summary>
+            PFI_5
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PFI6">
+            <summary>
+            PFI_6
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PFI7">
+            <summary>
+            PFI_7
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PXI_Trig0">
+            <summary>
+            PXITrig_0
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PXI_Trig1">
+            <summary>
+            PXITrig_1
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PXI_Trig2">
+            <summary>
+            PXITrig_2
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PXI_Trig3">
+            <summary>
+            PXITrig_3
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PXI_Trig4">
+            <summary>
+            PXITrig_4
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PXI_Trig5">
+            <summary>
+            PXITrig_5
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PXI_Trig6">
+            <summary>
+            PXITrig_6
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.PXI_Trig7">
+            <summary>
+            PXITrig_7
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerSource.DO_StartTrig">
+            <summary>
+            DO_Start_Trig
+            </summary>
+        </member>
+        <member name="T:JY5411.DIDigitalTriggerEdge">
+            <summary>
+            <para xml:lang="zh_CN">数字触发边沿</para>
+            <para xml:lang="en_US">DI digital trigger edge definition</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerEdge.Rising">
+            <summary>
+            Rising
+            </summary>
+        </member>
+        <member name="F:JY5411.DIDigitalTriggerEdge.Falling">
+            <summary>
+            Falling
+            </summary>
+        </member>
+        <member name="T:JY5411.DIDigitalTrigger">
+            <summary>
+            <para xml:lang="zh_CN">数字触发</para>
+            <para xml:lang="en_US">DI digital trigger setting parameter definition</para> 
+            </summary>
+        </member>
+        <member name="P:JY5411.DIDigitalTrigger.Source">
+            <summary>
+            DIDigitalTriggerSource
+            </summary>
+        </member>
+        <member name="P:JY5411.DIDigitalTrigger.Edge">
+            <summary>
+            DIDigitalTriggerEdge，Rising/Falling
+            </summary>
+        </member>
+        <member name="M:JY5411.DIDigitalTrigger.#ctor(JY5411.DIDigitalTriggerSource,JY5411.DIDigitalTriggerEdge)">
+            <summary>
+            DIDigitalTrigger
+            </summary>
+            <param name="edge"></param>
+            <param name="source"></param>
+        </member>
+        <member name="T:JY5411.DISignalExportSource">
+            <summary>
+            <para xml:lang="zh_CN">源信号</para>
+            <para xml:lang="en_US">JY5411_DI_SourceSignal</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DISignalExportSource.SampleClock">
+            <summary>
+            DI_SampleClock
+            </summary>
+        </member>
+        <member name="F:JY5411.DISignalExportSource.StartTrig">
+            <summary>
+            DI_Start_trigger
+            </summary>
+        </member>
+        <member name="F:JY5411.DISignalExportSource.ReferenceTrig">
+            <summary>
+            DI_Reference_trigger
+            </summary>
+        </member>
+        <member name="T:JY5411.SignalExportDestination">
+            <summary>
+            <para xml:lang="zh_CN">目的信号</para>
+            <para xml:lang="en_US">JY5411_DestinationTerminal</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PFI0">
+            <summary>
+            DestinationTerminal_PFI0
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PFI1">
+            <summary>
+            DestinationTerminal_PFI1
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PFI2">
+            <summary>
+            DestinationTerminal_PFI2
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PFI3">
+            <summary>
+            DestinationTerminal_PFI3
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PFI4">
+            <summary>
+            DestinationTerminal_PFI4
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PFI5">
+            <summary>
+            DestinationTerminal_PFI5
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PFI6">
+            <summary>
+            DestinationTerminal_PFI6
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PFI7">
+            <summary>
+            DestinationTerminal_PFI7
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PXI_Trig0">
+            <summary>
+            DestinationTerminal_PXITriggerBus0
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PXI_Trig1">
+            <summary>
+            DestinationTerminal_PXITriggerBus1
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PXI_Trig2">
+            <summary>
+            DestinationTerminal_PXITriggerBus2
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PXI_Trig3">
+            <summary>
+            DestinationTerminal_PXITriggerBus3
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PXI_Trig4">
+            <summary>
+            DestinationTerminal_PXITriggerBus4
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PXI_Trig5">
+            <summary>
+            DestinationTerminal_PXITriggerBus5
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PXI_Trig6">
+            <summary>
+            DestinationTerminal_PXITriggerBus6
+            </summary>
+        </member>
+        <member name="F:JY5411.SignalExportDestination.PXI_Trig7">
+            <summary>
+            DestinationTerminal_PXITriggerBus7
+            </summary>
+        </member>
+        <member name="T:JY5411.DISignalExport">
+            <summary>
+            DI Signal Export Class
+            </summary>
+        </member>
+        <member name="P:JY5411.DISignalExport.Destination">
+            <summary>
+            Export Signal List
+            </summary>
+        </member>
+        <member name="M:JY5411.DISignalExport.Add(JY5411.DISignalExportSource,JY5411.SignalExportDestination)">
+            <summary>
+            Export one Signal to Desination
+            </summary>
+            <param name="source">DI Signal Source</param>
+            <param name="destination">Export Desination</param>
+        </member>
+        <member name="M:JY5411.DISignalExport.Add(JY5411.DISignalExportSource,System.Collections.Generic.List{JY5411.SignalExportDestination})">
+            <summary>
+            Export one Signal to Mutil Desination
+            </summary>
+            <param name="source">DI Signal Source</param>
+            <param name="destinations"> Mutil Export Desinations</param>
+        </member>
+        <member name="M:JY5411.DISignalExport.Clear(JY5411.SignalExportDestination)">
+            <summary>
+            Clear one Signal Export
+            </summary>
+            <param name="destination">Export Desination</param>
+        </member>
+        <member name="M:JY5411.DISignalExport.ClearAll">
+            <summary>
+            Clear All Signal Export
+            </summary>
+        </member>
+        <member name="M:JY5411.DISignalExport.#ctor(JY5411.JY5411Device)">
+            <summary>
+            internal constructor
+            </summary>
+        </member>
+        <member name="T:JY5411.DIRecord">
+            <summary>
+            AI Record Parameters.
+            </summary>
+        </member>
+        <member name="P:JY5411.DIRecord.FilePath">
+            <summary>
+            User specified file path.
+            </summary>
+        </member>
+        <member name="P:JY5411.DIRecord.FileFormat">
+            <summary>
+            Streaming file format. enum BIN.
+            </summary>
+        </member>
+        <member name="P:JY5411.DIRecord.Mode">
+            <summary>
+            stream mode . enum Finite/Infinite.
+            </summary>
+        </member>
+        <member name="P:JY5411.DIRecord.Length">
+            <summary>
+            User specified stream length in second. Only when <see cref="P:JY5411.DIRecord.Mode"/> is <see cref="F:JY5411.RecordMode.Finite"/>.
+            </summary>
+        </member>
+        <member name="T:JY5411.FileFormat">
+            <summary>
+            Streaming file format. enum BIN.
+            </summary>
+        </member>
+        <member name="F:JY5411.FileFormat.Bin">
+            <summary>
+            <para xml:lang="zh_CN">BIN。</para>
+            <para xml:lang="en_US">BIN. </para>
+            </summary>
+        </member>
+        <member name="T:JY5411.RecordMode">
+            <summary>
+            stream mode .enum Finite/Infinite
+            </summary>
+        </member>
+        <member name="F:JY5411.RecordMode.Finite">
+            <summary>
+            Finite Streaming
+            </summary>
+        </member>
+        <member name="F:JY5411.RecordMode.Infinite">
+            <summary>
+            Infinite Streaming
+            </summary>
+        </member>
+        <member name="T:JY5411.JY5411DOTask">
+            <summary>
+            DOTask class
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.#ctor(System.Int32)">
+            <summary>
+            JY5411DOTask
+            </summary>
+            <param name="slotNum">board slotNum</param>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.#ctor(System.String)">
+            <summary>
+            <para xml:lang="zh_CN">JY5411DOTask构造函数，用来构造一个DO任务对象</para>
+            <para xml:lang="en_US">Constructor. Used to create an DOtask object.</para>
+            </summary>
+            <param name="boardName">
+            <para xml:lang="zh_CN">板卡名称。</para>
+            <para xml:lang="en_US">Card Name.</para>
+            </param>
+        </member>
+        <member name="F:JY5411.JY5411DOTask._devHandle">
+            <summary>
+            Object of operating hardware
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DOTask._actualUpdateRate">
+            <summary>
+            actualUpdateRate
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DOTask._doStarted">
+            <summary>
+            the flag of DOTask has been Started
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.Channels">
+            <summary>
+            DOChannel list
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.Device">
+            <summary>
+            JY5411Device
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.Mode">
+            <summary>
+            DOMode,Support Single/Finite/ContinuousWrapping/ContinuousNoWrapping
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.UpdateRate">
+            <summary>
+            Update rate per channel, maximum is 50MHz
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.SamplesToUpdate">
+            <summary>
+            The number of samples output per channel when finite point output
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.SampleClock">
+            <summary>
+            <para xml:lang="zh_CN">采样时钟</para>
+            <para xml:lang="en_US">Clock source, supports both internal and external types</para> 
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.BufLenInSamples">
+            <summary>
+            Number of samples per channel can be storage in the buffer, the Proprety <see cref="P:JY5411.JY5411DOTask.SamplesToUpdate"/> must be less than or equal to this value.        
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.availableLenInSamples">
+            <summary>
+            The number of samples currently available in the local buffer 
+            (the current number of samples that can be written to the buffer per channel)
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.TransferedSamples">
+            <summary>
+            The number of samples that have been transfered from the local buffer (per channel).  Valid when <see cref="P:JY5411.JY5411DOTask.Mode"/> is NOT <see cref="F:JY5411.DOMode.Single"/>.
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.CompleteState">
+            <summary>
+            DO Output Complete State, Valid when <see cref="P:JY5411.JY5411DOTask.Mode"/> is NOT <see cref="F:JY5411.DOMode.Single"/>.Default is Zero.
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.Trigger">
+            <summary>
+             configure DOTask trigger param 
+            </summary>
+        </member>
+        <member name="F:JY5411.JY5411DOTask._sampleToUpdateflag">
+            <summary>
+            SampleToUpdateflag
+            </summary>
+        </member>
+        <member name="P:JY5411.JY5411DOTask.SignalExport">
+            <summary>
+            Export DO Signal
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.AddChannel(System.Int32)">
+            <summary>
+            add single channel
+            </summary>
+            <param name="lineNum">line number to be added.</param>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.AddChannel(System.Int32[])">
+            <summary>
+            Add multiple channels
+            </summary>
+            <param name="linesNum"> an array of line numbers of added lines.</param>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.RemoveChannel(System.Int32)">
+            <summary>
+            Delete the specified line number .If it is -1, delete all lines.
+            </summary>
+            <param name="lineNum">line number  to be delete.</param>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.WriteSinglePoint(System.Boolean[])">
+            <summary>
+            write one sample to all lines in register . Available when <see cref = "P:JY5411.JY5411DOTask.Mode" /> is  <see cref = "F:JY5411.DOMode.Single" />
+            </summary>
+            <param name="writeValues">write Values.Buffer size >= number of lines。</param>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.WriteSinglePoint(System.Boolean,System.Int32)">
+            <summary>
+            Write one sample to the specified line in register.Available when <see cref = "P:JY5411.JY5411DOTask.Mode" /> is  <see cref = "F:JY5411.DOMode.Single" />
+            </summary>
+            <param name="writeValue">Write value.</param>
+            <param name="lineNum">Specified line.</param>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.SendSoftwareTrigger">
+            <summary>
+            SendSoftwareTrigger
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.Start">
+            <summary>
+            Start DOTask
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.Stop">
+            <summary>
+            Stop DOTask
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.WaitUntilDone">
+            <summary>
+            Waiting for the current task to complete
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.WriteData(System.UInt32[],System.UInt32,System.Int32)">
+            <summary>
+            Write the uint data from one line or multi-lines.
+            </summary>
+            <param name="dataBuffer">Data buffer</param>
+            <param name="samplesToUpdate">Number of samples per line to be write</param>
+            <param name="timeOut">timeout before generating error message, uint is ms。 timeout =-1 keep waiting until finish.</param>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.WriteData(System.IntPtr,System.UInt32,System.Int32)">
+            <summary>
+            Write the data from one line or multi-lines.
+            </summary>
+            <param name="dataBuffer">Data buffer</param>
+            <param name="samplesToUpdate">Number of samples per line to be write</param>
+            <param name="timeOut">timeout before generating error message, uint is ms。 timeout =-1 keep waiting until finish.</param>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.WriteData(System.UInt32[],System.Int32)">
+            <summary>
+            Write the uint data from one line or multi-lines.
+            </summary>
+            <param name="dataBuffer">Data buffer</param>
+            <param name="timeOut">timeout before generating error message, uint is ms。 timeout =-1 keep waiting until finish.</param>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.WriteData(System.Byte[0:,0:],System.UInt32,System.Int32)">
+            <summary>
+            write the line byte data to the lines. Each column represents one line.
+            </summary>
+            <param name="dataBuffer">Data buffer</param>
+            <param name="samplesPerChannel">Number of samples per line to be write</param>
+            <param name="timeOut">timeout before generating error message, uint is ms。 timeout =-1 keep waiting until finish.</param>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.WriteData(System.Byte[],System.UInt32,System.Int32)">
+            <summary>
+             wirte the byte data to one line.
+            </summary>
+            <param name="dataBuffer">Data buffer</param>
+            <param name="samplesPerChannel">Number of samples per line to be write</param>
+            <param name="timeOut">timeout before generating error message, uint is ms。 timeout =-1 keep waiting until finish.</param> 
+        </member>
+        <member name="M:JY5411.JY5411DOTask.CheckParam">
+            <summary>
+            CheckParam
+            </summary>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.ConfigChannels">
+            <summary>
+            ConfigChannels
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.ConfigMode">
+            <summary>
+            ConfigMode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.ConfigUpdateRate">
+            <summary>
+            ConfigUpdateRate
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.ConfigSampleClock">
+            <summary>
+            ConfigSampleClock
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.ConfigSamplesToUpdate">
+            <summary>
+            ConfigSamplesToUpdate
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:JY5411.JY5411DOTask.ConfigTigger">
+            <summary>
+            ConfigTigger
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:JY5411.DOChannel">
+            <summary>
+            DOChannel class
+            </summary>
+        </member>
+        <member name="P:JY5411.DOChannel.LineNum">
+            <summary>
+            LineID
+            </summary>
+        </member>
+        <member name="M:JY5411.DOChannel.#ctor(System.Int32)">
+            <summary>
+            DOChannel Constructor
+            </summary>
+            <param name="lineID">lineID</param>
+        </member>
+        <member name="T:JY5411.OutputCompleteState">
+            <summary>
+            Output Complete State
+            </summary>
+        </member>
+        <member name="F:JY5411.OutputCompleteState.Zero">
+            <summary>
+            Output Complete Zero
+            </summary>
+        </member>
+        <member name="F:JY5411.OutputCompleteState.Hold">
+            <summary>
+            Output Complete Hold in The last point
+            </summary>
+        </member>
+        <member name="T:JY5411.DOSampleClockSource">
+            <summary>
+            <para xml:lang="zh_CN">时钟源</para>
+            <para xml:lang="en_US">DOTask ClockSource enumeration type</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSampleClockSource.Internal">
+            <summary>
+            <para xml:lang="zh_CN">内部时钟</para>
+            <para xml:lang="en_US">Internal board clock</para> 
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSampleClockSource.External">
+            <summary>
+            External
+            </summary>
+        </member>
+        <member name="T:JY5411.DOSampleClock">
+            <summary>
+            Sample clock configuration class
+            </summary>
+        </member>
+        <member name="P:JY5411.DOSampleClock.Source">
+            <summary>
+            Clock Source. enum  Internal/External
+            </summary>
+        </member>
+        <member name="P:JY5411.DOSampleClock.External">
+            <summary>
+            External Sample Clock
+            </summary>
+        </member>
+        <member name="P:JY5411.DOSampleClock.Edge">
+            <summary>
+            Clock Edge
+            </summary>
+        </member>
+        <member name="T:JY5411.DOExternalSampleClock">
+            <summary>
+            External Sample Clock Configuration Class
+            </summary>
+        </member>
+        <member name="P:JY5411.DOExternalSampleClock.Terminal">
+            <summary>
+            External Sample Clock Input Terminal
+            </summary>
+        </member>
+        <member name="P:JY5411.DOExternalSampleClock.ExpectedRate">
+            <summary>
+            Expected External Sample Clock Rate
+            </summary>
+        </member>
+        <member name="T:JY5411.DOMode">
+            <summary>
+            DOTask mode enumeration type
+            </summary>
+        </member>
+        <member name="F:JY5411.DOMode.Single">
+            <summary>
+            Single mode
+            </summary>
+        </member>
+        <member name="F:JY5411.DOMode.Finite">
+            <summary>
+            Finite mode
+            </summary>
+        </member>
+        <member name="F:JY5411.DOMode.ContinuousWrapping">
+            <summary>
+            ContinuousWrapping mode
+            </summary>
+        </member>
+        <member name="F:JY5411.DOMode.ContinuousNoWrapping">
+            <summary>
+            ContinuousNoWrapping mode
+            </summary>
+        </member>
+        <member name="T:JY5411.DODigitalTriggerEdge">
+            <summary>
+            DODigitalTriggerEdge enumeration type
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerEdge.Rising">
+            <summary>
+            Rising
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerEdge.Falling">
+            <summary>
+            Falling
+            </summary>
+        </member>
+        <member name="T:JY5411.DODigitalTriggerSource">
+            <summary>
+            DODigitalTriggerSource enumeration type
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PFI0">
+            <summary>
+            PFI0
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PFI1">
+            <summary>
+            PFI_1
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PFI2">
+            <summary>
+            PFI_2
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PFI3">
+            <summary>
+            PFI_3
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PFI4">
+            <summary>
+            PFI_4
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PFI5">
+            <summary>
+            PFI_5
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PFI6">
+            <summary>
+            PFI_6
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PFI7">
+            <summary>
+            PFI_7
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PXI_Trig0">
+            <summary>
+            PXITrig_0
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PXI_Trig1">
+            <summary>
+            PXITrig_1
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PXI_Trig2">
+            <summary>
+            PXITrig_2
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PXI_Trig3">
+            <summary>
+            PXITrig_3
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PXI_Trig4">
+            <summary>
+            PXITrig_4
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PXI_Trig5">
+            <summary>
+            PXITrig_5
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PXI_Trig6">
+            <summary>
+            PXITrig_6
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.PXI_Trig7">
+            <summary>
+            PXITrig_7
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.DI_StartTrig">
+            <summary>
+            DI_Start_Trig
+            </summary>
+        </member>
+        <member name="F:JY5411.DODigitalTriggerSource.DI_ReferenceTrig">
+            <summary>
+            DI_Reference_Trig
+            </summary>
+        </member>
+        <member name="T:JY5411.DOTriggerType">
+             <summary>
+            DOTriggerType enumeration type
+             </summary>
+        </member>
+        <member name="F:JY5411.DOTriggerType.Immediately">
+            <summary>
+            Immediate
+            </summary>
+        </member>
+        <member name="F:JY5411.DOTriggerType.Digital">
+            <summary>
+            Digital
+            </summary>
+        </member>
+        <member name="F:JY5411.DOTriggerType.Soft">
+            <summary>
+            Soft
+            </summary>
+        </member>
+        <member name="T:JY5411.DOTrigger">
+            <summary>
+            DOTrigger enumeration type
+            </summary>
+        </member>
+        <member name="P:JY5411.DOTrigger.Type">
+            <summary>
+            DOTriggerType：Immediate/Digital
+            </summary>
+        </member>
+        <member name="P:JY5411.DOTrigger.Digital">
+            <summary>
+            DODigitalTrigger
+            </summary>
+        </member>
+        <member name="P:JY5411.DOTrigger.Delay">
+            <summary>
+            DODigitalTrigger delay，Unit:Sample
+            </summary>
+        </member>
+        <member name="M:JY5411.DOTrigger.#ctor(JY5411.DOTriggerType)">
+            <summary>
+            DOTrigger 
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="T:JY5411.DODigitalTrigger">
+            <summary>
+            DODigitalTrigger enumeration type
+            </summary>
+        </member>
+        <member name="P:JY5411.DODigitalTrigger.Source">
+            <summary>
+            DODigitalTriggerSource
+            </summary>
+        </member>
+        <member name="P:JY5411.DODigitalTrigger.Edge">
+            <summary>
+            DODigitalTriggerEdge，Rising/Falling
+            </summary>
+        </member>
+        <member name="M:JY5411.DODigitalTrigger.#ctor(JY5411.DODigitalTriggerEdge)">
+            <summary>
+            DODigitalTrigger 
+            </summary>
+            <param name="edge"> trigger edge</param>
+        </member>
+        <member name="T:JY5411.DOSignalExportSource">
+            <summary>
+            JY5411_DO_SourceSignal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_0">
+            <summary>
+            DO_0 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_1">
+            <summary>
+            DO_1 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_2">
+            <summary>
+            DO_2 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_3">
+            <summary>
+            DO_3 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_4">
+            <summary>
+            DO_4 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_5">
+            <summary>
+            DO_5 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_6">
+            <summary>
+            DO_6 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_7">
+            <summary>
+            DO_7 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_8">
+            <summary>
+            DO_8 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_9">
+            <summary>
+            DO_9 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_10">
+            <summary>
+            DO_10 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_11">
+            <summary>
+            DO_11 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_12">
+            <summary>
+            DO_12 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_13">
+            <summary>
+            DO_13 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_14">
+            <summary>
+            DO_14 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_15">
+            <summary>
+            DO_15 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_16">
+            <summary>
+            DO_16 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_17">
+            <summary>
+            DO_17 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_18">
+            <summary>
+            DO_18 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_19">
+            <summary>
+            DO_19 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_20">
+            <summary>
+            DO_20 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_21">
+            <summary>
+            DO_1 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_22">
+            <summary>
+            DO_22 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_23">
+            <summary>
+            DO_23 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_24">
+            <summary>
+            DO_24 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_25">
+            <summary>
+            DO_25 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_26">
+            <summary>
+            DO_26 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_27">
+            <summary>
+            DO_27 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_28">
+            <summary>
+            DO_28 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_29">
+            <summary>
+            DO_29 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_30">
+            <summary>
+            DO_30 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.DO_31">
+            <summary>
+            DO_31 signal
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.SampleClock">
+            <summary>
+            DO_SampleCLK_Out
+            </summary>
+        </member>
+        <member name="F:JY5411.DOSignalExportSource.StartTrig">
+            <summary>
+            DO_Start_trigger_out
+            </summary>
+        </member>
+        <member name="T:JY5411.DOSignalExport">
+            <summary>
+            DO Signal Export Class
+            </summary>
+        </member>
+        <member name="P:JY5411.DOSignalExport.Destination">
+            <summary>
+            Export Signal List
+            </summary>
+        </member>
+        <member name="M:JY5411.DOSignalExport.Add(JY5411.DOSignalExportSource,JY5411.SignalExportDestination)">
+            <summary>
+            Export one Signal to Desination
+            </summary>
+            <param name="source">DO Signal Source</param>
+            <param name="destination">Export Desination</param>
+        </member>
+        <member name="M:JY5411.DOSignalExport.Add(JY5411.DOSignalExportSource,System.Collections.Generic.List{JY5411.SignalExportDestination})">
+            <summary>
+            Export one Signal to Mutil Desination
+            </summary>
+            <param name="source">DO Signal Source</param>
+            <param name="destinations"> Mutil Export Desinations</param>
+        </member>
+        <member name="M:JY5411.DOSignalExport.Clear(JY5411.SignalExportDestination)">
+            <summary>
+            Clear one Signal Export
+            </summary>
+            <param name="destination">Export Desination</param>
+        </member>
+        <member name="M:JY5411.DOSignalExport.ClearAll">
+            <summary>
+            Clear All Signal Export
+            </summary>
+        </member>
+        <member name="M:JY5411.DOSignalExport.#ctor(JY5411.JY5411Device)">
+            <summary>
+            internal constructor
+            </summary>
+        </member>
+    </members>
+</doc>
